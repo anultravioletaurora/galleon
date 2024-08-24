@@ -1,0 +1,15 @@
+# guacamole PVC for config
+kind: "PersistentVolumeClaim"
+apiVersion: "v1"
+metadata:
+  name: guacamole
+  labels:
+    app.kubernetes.io/name: guacamole
+    app.kubernetes.io/instance: guacamole
+spec:
+  accessModes:
+    - "ReadWriteMany"
+  resources:
+    requests:
+      storage: "5Gi"
+---
