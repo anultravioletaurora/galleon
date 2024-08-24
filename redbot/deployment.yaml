@@ -1,0 +1,39 @@
+ : apps/v1
+kind: Deployment
+metadata:
+  name: redbot
+  labels:
+    app.kubernetes.io/name: redbot
+    app.kubernetes.io/instance: redbot
+spec:
+  strategy:
+    type: "Recreate"
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: redbot
+      app.kubernetes.io/instance: redbot
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: redbot
+        app.kubernetes.io/instance: redbot
+    spec:
+      containers:
+        - name: redbot
+          image: phasecorex/red-discordbot:extra
+          volumeMounts:
+            - name: redbot
+              mountPath: "/data"
+              subPath: "wordpress"
+          env:
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: redbot
+                  key: bot_token
+            - name: PREFIX
+              valueFrom:
+                configMapKeyRef:
+                  name: redbot
+                  key: bot_prefix
+                
