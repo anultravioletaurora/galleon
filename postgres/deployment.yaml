@@ -23,7 +23,7 @@ spec:
         app.kubernetes.io/instance: postgres
     spec:
       containers:
-        - name: postres
+        - name: postgres
           image: "postgres:15.7-bookworm"
           ports:
             - containerPort: 5432
@@ -41,6 +41,7 @@ spec:
           volumeMounts: 
             - name: postgres
               mountPath: "/var/lib/postgresql/data"
+              subPath: data
         - name: redis
           image: redis:7.4.0
           ports: 
