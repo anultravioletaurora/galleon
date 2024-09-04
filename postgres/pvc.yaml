@@ -1,0 +1,15 @@
+# nextcloud PVC for config
+apiVersion: "v1"
+kind: "PersistentVolumeClaim"
+metadata:
+  name: postgres
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/instance: postgres
+spec:
+  accessModes:
+    - "ReadWriteMany"
+  resources:
+    requests:
+      storage: "20Gi"
+---
