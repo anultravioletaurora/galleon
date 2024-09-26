@@ -1,0 +1,15 @@
+# ollama PVC for models
+kind: "PersistentVolumeClaim"
+apiVersion: "v1"
+metadata:
+  name: ollama
+  labels:
+    app.kubernetes.io/name: ollama
+    app.kubernetes.io/instance: ollama
+spec:
+  accessModes:
+    - "ReadWriteMany"
+  resources:
+    requests:
+      storage: "50Gi"
+---
