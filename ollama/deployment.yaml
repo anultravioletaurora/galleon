@@ -28,6 +28,11 @@ spec:
           image: ollama/ollama:0.3.12
           ports:
             - containerPort: 11434
+          env:
+            - name: CUDA_VISIBLE_DEVICES
+              value: all
+            - name: CUDA_DRIVER_CAPABILITIES
+              value: all
           volumeMounts:
             - mountPath: "/root/.ollama"
               name: ollama
