@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openai-discord-bridge
+  labels:
+    app.kubernetes.io/name: openai-discord-bridge
+    app.kubernetes.io/instance: openai-discord-bridge
+spec:
+  strategy:
+    type: "Recreate"
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: openai-discord-bridge
+      app.kubernetes.io/instance: openai-discord-bridge
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: openai-discord-bridge
+        app.kubernetes.io/instance: openai-discord-bridge
+    spec:
+      containers:
+        - name: openai-discord-bridge
+          image: ghcr.io/anultravioletaurora/openai-discord-bridge:1.0.0
+          env:
+            - name: BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: openai-discord-bridge
+                  key: bot_token
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-discord-bridge
+                  key: openai_api_key
+            - name: CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: openai-discord-bridge
+                  key: client_id
+            - name: GUILD_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: openai-discord-bridge
+                  key: guild_id
+            - name: GPT_MODEL
+              valueFrom:
+                configMapKeyRef:
+                  name: openai-discord-bridge
+                  key: gpt_model
