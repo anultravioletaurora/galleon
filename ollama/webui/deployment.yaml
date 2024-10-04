@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: open-webui
+  labels:
+    app.kubernetes.io/name: open-webui
+    app.kubernetes.io/instance: open-webui
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1                 # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # < New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: open-webui
+      app.kubernetes.io/instance: open-webui
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: open-webui
+        app.kubernetes.io/instance: open-webui
+    spec:
+      runtimeClassName: nvidia
+      containers:
+        - name: open-webui
+          image: ghcr.io/open-webui/open-webui:cuda
+          ports:
+            - containerPort: 8080
+          env:
+            - name: OLLAMA_BASE_URL
+              value: "ollama.cosmonautical:11434"
+          volumeMounts:
+            - mountPath: "/app/backend/data"
+              name: ollama
+              subPath: "open-webui"
+          resources:
+            limits:
+              nvidia.com/gpu: '1'
+
+      volumes:
+        - name: ollama
+          persistentVolumeClaim:
+            claimName: ollama
+---
