@@ -34,6 +34,8 @@ spec:
           env:
             - name: CUDA_VISIBLE_DEVICES
               value: all
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: all
             - name: CUDA_DRIVER_CAPABILITIES
               value: all
           volumeMounts:
