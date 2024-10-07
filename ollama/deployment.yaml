@@ -40,6 +40,8 @@ spec:
               value: all
             - name: CUDA_DRIVER_CAPABILITIES
               value: all
+            - name: GPU_DEVICE_ORDINAL
+              value: "01:00.0"
           volumeMounts:
             - mountPath: "/root/.ollama"
               name: ollama
