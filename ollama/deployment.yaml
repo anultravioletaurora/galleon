@@ -23,7 +23,6 @@ spec:
         app.kubernetes.io/instance: ollama
     spec:
       runtimeClassName: nvidia
-
       containers:
         - name: ollama
           securityContext:
@@ -32,16 +31,12 @@ spec:
           ports:
             - containerPort: 11434
           env:
-            - name: CUDA_VISIBLE_DEVICES
-              value: all
             - name: NVIDIA_VISIBLE_DEVICES
               value: all
             - name: NVIDIA_DRIVER_CAPABILITIES
               value: all
-            - name: CUDA_DRIVER_CAPABILITIES
-              value: all
-            - name: GPU_DEVICE_ORDINAL
-              value: "01:00.0"
+            - name: OLLAMA_DEBUG
+              value: "1"
           volumeMounts:
             - mountPath: "/root/.ollama"
               name: ollama
@@ -49,7 +44,6 @@ spec:
           resources:
             limits:
               nvidia.com/gpu: '1'
-
       volumes:
         - name: ollama
           persistentVolumeClaim:
