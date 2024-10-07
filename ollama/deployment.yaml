@@ -23,8 +23,11 @@ spec:
         app.kubernetes.io/instance: ollama
     spec:
       runtimeClassName: nvidia
+
       containers:
         - name: ollama
+          securityContext:
+            privileged: true
           image: ollama/ollama:0.3.12
           ports:
             - containerPort: 11434
