@@ -24,7 +24,7 @@ spec:
           volumeMounts:
             - name: redbot
               mountPath: "/data"
-              subPath: "wordpress"
+              subPath: "redbot"
           env:
             - name: TOKEN
               valueFrom:
