@@ -2,7 +2,7 @@ defaultNamespace: nvidia-gpu-operator
 helm:
   chart: 'gpu-operator'
   repo: 'https://helm.ngc.nvidia.com/nvidia'
-  version: 24.6.1
+  version: 24.3.0
   values:
     driver: 
       enabled: true
