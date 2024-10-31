@@ -1,5 +1,4 @@
 defaultNamespace: nvidia-gpu-operator
-namespace: nvidia-gpu-operator
 helm:
   chart: 'gpu-operator'
   repo: 'https://helm.ngc.nvidia.com/nvidia'
