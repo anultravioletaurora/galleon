@@ -36,4 +36,7 @@ spec:
                 configMapKeyRef:
                   name: redbot
                   key: bot_prefix
-                
+      volumes:
+      - name: redbot
+        persistentVolumeClaim:
+          claimName: redbot
