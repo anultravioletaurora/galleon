@@ -23,6 +23,8 @@ metadata:
   labels:
     app.kubernetes.io/name: guacamole
     app.kubernetes.io/instance: guacamole
+  annotations:
+    cloudprovider.harvesterhci.io/ipam: dhcp
 spec:
   type: LoadBalancer
   ports:
