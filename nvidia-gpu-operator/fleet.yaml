@@ -6,7 +6,9 @@ helm:
   values:
     driver: 
       enabled: true
-      startupProbe: "120s"
+      startupProbe: 
+        initialDelaySeconds: 120
+        periodSeconds: 10
     toolkit: 
       enabled: true
       env:
