@@ -6,6 +6,7 @@ helm:
   values:
     driver: 
       enabled: true
+      usePrecompiled: true
     toolkit: 
       enabled: true
       env:
