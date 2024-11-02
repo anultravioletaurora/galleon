@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin
+  labels:
+    app.kubernetes.io/name: jellyfin
+    app.kubernetes.io/instance: jellyfin
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # < New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: jellyfin
+      app.kubernetes.io/instance: jellyfin
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: jellyfin
+        app.kubernetes.io/instance: jellyfin
+    spec:
+      nodeSelector:
+        nvidia.com/gpu.present: "true"
+      runtimeClassName: nvidia
+      # I think this will allow Jellyfin to more easily communicate with the TV tuner devices?
+      hostNetwork: true
+      containers:
+        - name: jellyfin
+          securityContext:
+            privileged: true
+            sysctls:
+              - name: fs.inotify.max_user_watches
+                value: 524288
+          image: jellyfin/jellyfin:10.9.11
+          ports:
+            - containerPort: 8096
+          env:
+            - name: TZ
+              value: "America/Chicago"
+            - name: JELLYFIN_CACHE_DIR
+              value: "/tmp"
+          volumeMounts:
+            - name: config
+              mountPath: "/config"
+            - name: tvshows
+              mountPath: /media/tvshows
+            - name: movies
+              mountPath: /media/movies
+            - name: audiobooks
+              mountPath: /media/audiobooks
+            - name: books
+              mountPath: /media/books 
+            - name: music
+              mountPath: /media/music
+            - name: liveshows
+              mountPath: /media/liveshows 
+            - name: stash
+              mountPath: /media/stash 
+            - name: zap2it
+              mountPath: /media/xmltv 
+
+          lifecycle:
+            postStart:
+              exec:
+                command: 
+                  - "/bin/sh"
+                  - "-c"
+                  - "cd /tmp && apt-get update && \
+                    apt-get install -y git && \
+                    git clone https://github.com/anultravioletaurora/Jellynautical.git &&\
+                    mv ./Jellynautical/min/*.min.css /jellyfin/jellyfin-web/"
+    
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8096
+            initialDelaySeconds: 240
+            periodSeconds: 30
+                  
+          resources:
+            limits:
+              memory: "14Gi"
+              nvidia.com/gpu: "1" 
+            requests:
+              memory: "12Gi" 
+              nvidia.com/gpu: "1"
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: jellyfin
+        - name: zap2it
+          persistentVolumeClaim:
+            claimName: zap2it 
+        - name: movies
+          persistentVolumeClaim:
+            claimName: movies
+        - name: tvshows
+          persistentVolumeClaim:
+            claimName: tvshows
+        - name: audiobooks
+          persistentVolumeClaim:
+            claimName: audiobooks
+        - name: books
+          persistentVolumeClaim:
+            claimName: books
+        - name: music
+          persistentVolumeClaim:
+            claimName: music
