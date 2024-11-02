@@ -54,12 +54,6 @@ spec:
               mountPath: /media/books 
             - name: music
               mountPath: /media/music
-            - name: liveshows
-              mountPath: /media/liveshows 
-            - name: stash
-              mountPath: /media/stash 
-            - name: zap2it
-              mountPath: /media/xmltv 
 
           lifecycle:
             postStart:
