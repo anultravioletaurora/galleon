@@ -5,7 +5,9 @@ helm:
   version: 24.6.2
   values:
     driver: 
-      enabled: false
+      enabled: true
+      usePrecompiled: true
+      version: 550
       startupProbe: 
         initialDelaySeconds: 120
         periodSeconds: 10
