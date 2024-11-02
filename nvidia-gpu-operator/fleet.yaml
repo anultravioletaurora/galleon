@@ -4,6 +4,9 @@ helm:
   repo: 'https://helm.ngc.nvidia.com/nvidia'
   version: 24.6.2
   values:
+    devicePlugin:
+      config:
+        name: time-slicing-config
     driver: 
       enabled: true
       usePrecompiled: true
