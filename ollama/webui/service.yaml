@@ -5,6 +5,8 @@ metadata:
   labels:
     app.kubernetes.io/name: open-webui
     app.kubernetes.io/instance: open-webui
+  annotations:
+    cloudprovider.harvesterhci.io/ipam: dhcp
 spec:
   type: LoadBalancer
   ports:
