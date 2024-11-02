@@ -7,6 +7,7 @@ helm:
     devicePlugin:
       config:
         name: time-slicing-config
+        default: any
     driver: 
       enabled: true
       usePrecompiled: true
