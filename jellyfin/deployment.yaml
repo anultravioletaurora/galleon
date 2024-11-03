@@ -88,17 +88,38 @@ spec:
           persistentVolumeClaim:
             claimName: zap2it 
         - name: movies
-          persistentVolumeClaim:
-            claimName: movies
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/movies
         - name: tvshows
-          persistentVolumeClaim:
-            claimName: tvshows
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/tvshows
         - name: audiobooks
-          persistentVolumeClaim:
-            claimName: audiobooks
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/audiobooks
         - name: books
-          persistentVolumeClaim:
-            claimName: books
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/books
         - name: music
-          persistentVolumeClaim:
-            claimName: music
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/music
+        - name: picture-frame
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/picture-frame
+        - name: stash
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/stash
+        - name: liveshows
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/liveshows
+        - name: livetv
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/livetv
