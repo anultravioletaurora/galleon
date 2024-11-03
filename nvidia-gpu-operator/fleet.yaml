@@ -26,3 +26,5 @@ helm:
           value: "false"
   releaseName: nvidia-gpu-operator
 paused: false
+dependsOn:
+  - name: galleon-nvidia-runtime
