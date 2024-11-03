@@ -8,7 +8,7 @@ helm:
       volumes:
         - name: custom-css
           configMap:
-            name: authentik-custom-css
+            name: galleon-authentik-custom-css
       volumeMounts:
         - name: custom-css
           mountPath: /web/dist/custom.css
