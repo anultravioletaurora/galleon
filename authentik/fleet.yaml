@@ -3,6 +3,16 @@ helm:
   chart: 'authentik'
   repo: 'https://charts.goauthentik.io/'
   version: 2024.10.0
+  values:
+    global:
+      volumes:
+        - name: custom-css
+          configMap:
+            name: authentik-custom-css
+      volumeMounts:
+        - name: custom-css
+          mountPath: /web/dist/custom.css
+          subPath: custom-css
   valuesFrom:
     - secretKeyRef:
         name: authentik

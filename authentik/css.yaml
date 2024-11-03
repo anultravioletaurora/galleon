@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: authentik-custom-css
+data:
+    custom.css: |
+      :root {
+          --ak-accent: var(--pf-global--palette--purple-200) !important;
+          --pf-global--primary-color--100: var(--pf-global--palette--purple-200) !important;
+          --pf-global--primary-color--200: var(--pf-global--palette--purple-300) !important;
+          --pf-global--primary-color--light-100: var(--pf-global--palette--purple-100) !important;
+          --pf-global--primary-color--dark-100: var(--pf-global--palette--purple-500) !important;
+      }
+
+      .header input {
+        border-color-bottom: rgb(103, 83, 172) !important
+      }
+      
+      .pf-c-background-image {
+          --ak-flow-background: url("assets/images/custom/cosmos_background.webp") !important
+      }
+      
+      .pf-c-nav__link.pf-m-current::after, .pf-c-nav__link.pf-m-current:hover::after, .pf-c-nav__item.pf-m-current:not(.pf-m-expanded) .pf-c-nav__link::after {
+          --pf-c-nav__link--m-current--after--BorderColor: var(--ak-accent) !important;
+      }
+      
+      /* Override Authentik logo with cosmonaut */
+      img[src*="/static/dist/assets/icons/icon_left_brand.svg"] {
+          content: url("assets/images/custom/astronaut.png") !important;
+          width: auto;
+          display: flex;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      
+      .pf-c-page__header-brand-link .pf-c-brand img[src*="/static/dist/assets/icons/icon_left_brand.svg"] {
+          height: 5rem !important;
+      }
+      
+      /* Remove Login page margins around logo */
+      .pf-c-login__header .pf-c-brand {
+          margin-bottom: 0px !important
+      }
+      
+      /* Custom cosmonaut header image height */
+      .pf-c-login__header .pf-c-brand img[src*="/static/dist/assets/icons/icon_left_brand.svg"] {
+          height: 15rem !important;
+      }
