@@ -84,9 +84,6 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: jellyfin
-        - name: zap2it
-          persistentVolumeClaim:
-            claimName: zap2it 
         - name: movies
           nfs:
             server: unraid.cosmonautical.cloud
