@@ -3,3 +3,8 @@ helm:
   chart: 'authentik'
   repo: 'https://charts.goauthentik.io/'
   version: 2024.10.0
+  valuesFrom:
+    - secretKeyRef:
+        name: authentik
+        namespace: cosmonautical
+        key: values.yaml
