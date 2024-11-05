@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: minecraft-bedrock-cm
+data:
+  version: "LATEST"
+  server_name: "Cosmonautical"
+  gamemode: "survival"
+  allow_cheats: "true"
+  view_distance: "40"

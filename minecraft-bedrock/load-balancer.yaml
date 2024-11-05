@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-bedrock
+  labels:
+    app.kubernetes.io/name: minecraft-bedrock
+    app.kubernetes.io/instance: minecraft-bedrock
+  annotations:
+    cloudprovider.harvesterhci.io/ipam: dhcp
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 19132
+      targetPort: 19132
+      protocol: UDP
+      name: minecraft-bedrock
+  selector:
+    app.kubernetes.io/name: minecraft-bedrock
+    app.kubernetes.io/instance: minecraft-bedrock

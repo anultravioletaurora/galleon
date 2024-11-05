@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft
+  labels:
+    app.kubernetes.io/name: minecraft
+    app.kubernetes.io/instance: minecraft
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1                 # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # < New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: minecraft
+      app.kubernetes.io/instance: minecraft
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: minecraft
+        app.kubernetes.io/instance: minecraft
+    spec:
+      initContainers:
+        - name: minecraft-bedrock-init
+      containers:
+        - name: minecraft-bedrock
+          image: itzg/minecraft-server:2024.7.2
+          imagePullPolicy: Always
+          ports: 
+            - containerPort: 19132
+              protocol: UDP
+          env: 
+            - name: EULA
+              value: "true"
+            - name: VERSION
+              valueFrom:
+                configMapKeyRef:
+                  key: version
+                  name: minecraft-bedrock-cm
+            - name: SERVER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: server_name
+                  name: minecraft-bedrock-cm
+            - name: GAMEMODE
+              valueFrom:
+                configMapKeyRef:
+                  key: gamemode
+                  name: minecraft-bedrock-cm
+            - name: ALLOW_CHEATS
+              valueFrom:
+                configMapKeyRef:
+                  key: allow_cheats
+                  name: minecraft-bedrock-cm
+            - name: VIEW_DISTANCE
+              valueFrom:
+                configMapKeyRef:
+                  key: view_distance
+                  name: minecraft-bedrock-cm
+            - name: LEVEL_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: server_name
+                  name: minecraft-bedrock-cm
+          resources:
+            limits:
+              memory: "8Gi"
+            requests:
+              memory: "6Gi"
+          volumeMounts:
+            - name: minecraft-bedrock
+              mountPath: "/data"
+              subPath: "data"
+            - name: minecraft-cm
+              mountPath: "/extras"
+      volumes:
+        - name: minecraft-bedrock
+          persistentVolumeClaim:
+            claimName: minecraft-bedrock
+        - name: minecraft-cm
+          configMap:
+            name: minecraft-cm
+            defaultMode: 0555 # Makes scripts executable: https://github.com/kubernetes/kubernetes/issues/71356#issuecomment-441169334
+
