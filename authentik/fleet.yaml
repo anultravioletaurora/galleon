@@ -18,5 +18,3 @@ helm:
         name: authentik
         namespace: cosmonautical
         key: values.yaml
-dependsOn:
-  - name: galleon-authentik-styling
