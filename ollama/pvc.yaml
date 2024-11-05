@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: minecraft-bedrock
+  name: ollama
 spec:
   accessModes:
     - ReadWriteMany
