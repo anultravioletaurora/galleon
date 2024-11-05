@@ -12,7 +12,7 @@ helm:
       volumeMounts:
         - name: custom-css
           mountPath: /web/dist/custom.css
-          subPath: custom-css
+          subPath: custom.css
   valuesFrom:
     - secretKeyRef:
         name: authentik
