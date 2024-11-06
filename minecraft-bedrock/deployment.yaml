@@ -31,11 +31,11 @@ spec:
                   key: addons
                   name: minecraft-bedrock-cm          
           command:
-            - /bin/bash
+            - /bin/sh
             - -c
           args:
             - for mod in \$ADDONS; do wget $i; done
-          workingDir: "/tmp"
+          workingDir: /tmp
           volumeMounts:
             - name: minecraft-bedrock
               mountPath: "/data"
