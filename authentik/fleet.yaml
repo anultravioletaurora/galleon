@@ -7,7 +7,8 @@ helm:
     global:
       volumeMounts:
         - name: custom-css
-          mountPath: /web/dist/custom.css
+          mountPath: "/web/dist/custom.css"
+          subPath: "custom.css"
           readOnly: true
       volumes:
         - name: custom-css
