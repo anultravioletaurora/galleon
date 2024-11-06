@@ -5,16 +5,18 @@ helm:
   version: 2024.10.0
   values:
     global:
-      volumes:
-        - name: custom-css
-          configMap:
-            name: authentik-custom-css
       volumeMounts:
         - name: custom-css
           mountPath: /web/dist/custom.css
           subPath: custom.css
+      volumes:
+        - name: custom-css
+          configMap:
+            name: authentik-custom-css
   valuesFrom:
     - secretKeyRef:
         name: authentik
         namespace: cosmonautical
         key: values.yaml
+dependsOn:
+  - name: galleon-authentik-styling
