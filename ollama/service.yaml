@@ -5,10 +5,9 @@ metadata:
   labels:
     app.kubernetes.io/name: ollama
     app.kubernetes.io/instance: ollama
-  annotations:
-    cloudprovider.harvesterhci.io/ipam: dhcp
 spec:
-  type: LoadBalancer
+  type: ClusterIP
+  clusterIP: 10.43.1.81
   ports:
     - port: 11434
       targetPort: 11434

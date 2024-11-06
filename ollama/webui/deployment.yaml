@@ -31,7 +31,7 @@ spec:
             - containerPort: 8080
           env:
             - name: OLLAMA_BASE_URL
-              value: "ollama.cosmonautical:11434"
+              value: "10.43.1.81:11434"
           volumeMounts:
             - mountPath: "/app/backend/data"
               name: ollama
