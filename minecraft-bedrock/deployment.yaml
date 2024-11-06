@@ -34,7 +34,7 @@ spec:
             - /bin/sh
             - -c
           args:
-            - for mod in \$ADDONS; do echo "Fetching \$mod" && wget \$mod; done
+            - for mod in "${ADDONS[@]}"; do echo "Fetching $mod" && wget "$mod"; done
           workingDir: /tmp
           volumeMounts:
             - name: minecraft-bedrock
