@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whisparr
+  labels:
+    app.kubernetes.io/name: whisparr
+    app.kubernetes.io/instance: whisparr
+spec:
+  type: ClusterIP
+  clusterIP: 10.43.1.37
+  ports:
+    - port: 6969
+      targetPort: 6969
+      protocol: TCP
+      name: web
+  selector:
+    app.kubernetes.io/name: whisparr
+    app.kubernetes.io/instance: whisparr

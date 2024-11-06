@@ -1,0 +1,16 @@
+# bazarr PVC for config
+kind: "PersistentVolumeClaim"
+apiVersion: "v1"
+metadata:
+  name: bazarr
+  labels:
+    app.kubernetes.io/name: bazarr
+    app.kubernetes.io/instance: bazarr
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "5Gi"
+  storageClassName: harvester
+---

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whisparr
+  labels:
+    app.kubernetes.io/name: whisparr
+    app.kubernetes.io/instance: whisparr
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: whisparr
+      app.kubernetes.io/instance: whisparr
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: whisparr
+        app.kubernetes.io/instance: whisparr
+    spec:
+      containers:
+        - name: whisparr
+          image: ghcr.io/hotio/whisparr:nightly-2.0.0.548
+          ports:
+            - containerPort: 6969
+          volumeMounts:
+            - name: whisparr
+              mountPath: "/config"
+            - name: stash
+              mountPath: /stash
+            - name: downloads
+              mountPath: /downloads
+      volumes:
+      - name: whisparr
+        persistentVolumeClaim:
+          claimName: whisparr
+      - name: stash
+        nfs:
+          server: unraid.cosmonautical.cloud
+          path: /mnt/user/stash
+      - name: downloads
+        nfs:
+          server: unraid.cosmonautical.cloud
+          path: /mnt/user/music-downloads

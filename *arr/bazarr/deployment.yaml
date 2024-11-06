@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bazarr
+  labels:
+    app.kubernetes.io/name: bazarr
+    app.kubernetes.io/instance: bazarr
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: bazarr
+      app.kubernetes.io/instance: bazarr
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: bazarr
+        app.kubernetes.io/instance: bazarr
+    spec:
+      containers:
+        - name: bazarr
+          image: ghcr.io/hotio/bazarr:release-1.4.3
+          ports:
+            - containerPort: 6767
+          volumeMounts:
+            - name: bazarr
+              mountPath: "/config"
+            - name: tvshows
+              mountPath: /tvshows
+            - name: movies
+              mountPath: /movies
+      volumes:
+        - name: bazarr
+          persistentVolumeClaim:
+            claimName: bazarr
+        - name: tvshows
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/tvshows
+        - name: movies
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/movies
+---

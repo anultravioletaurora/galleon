@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  labels:
+    app.kubernetes.io/name: sonarr
+    app.kubernetes.io/instance: sonarr
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: sonarr
+      app.kubernetes.io/instance: sonarr
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: sonarr
+        app.kubernetes.io/instance: sonarr
+    spec:
+      containers:
+        - name: sonarr
+          image: ghcr.io/hotio/sonarr:release-4.0.9.2244
+          ports:
+            - containerPort: 8989
+          volumeMounts:
+            - name: sonarr
+              mountPath: "/config"
+            - name: tvshows
+              mountPath: /tvshows
+            - name: downloads
+              mountPath: /downloads
+          resources:
+            requests:
+              cpu: "2"
+              memory: "2Gi"
+      volumes:
+      - name: sonarr
+        persistentVolumeClaim:
+          claimName: sonarr
+      - name: tvshows
+        nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/tvshows
+      - name: downloads
+        nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/music-downloads
+
+---
+

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lidarr
+spec:
+  type: ClusterIP
+  clusterIP: 10.43.1.35
+  ports:
+    - port: 8686
+      targetPort: 8686
+      protocol: TCP
+      name: web
+  selector:
+    app.kubernetes.io/name: lidarr
+    app.kubernetes.io/instance: lidarr

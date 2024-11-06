@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr
+  labels:
+    app.kubernetes.io/name: radarr
+    app.kubernetes.io/instance: radarr
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: radarr
+      app.kubernetes.io/instance: radarr
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: radarr
+        app.kubernetes.io/instance: radarr
+    spec:
+      containers:
+        - name: radarr
+          image: hotio/radarr:release-4.6.4.7568
+          ports:
+            - containerPort: 7878
+          volumeMounts:
+            - name: radarr
+              mountPath: "/config"
+            - name: movies
+              mountPath: /movies
+            - name: downloads
+              mountPath: /downloads
+          resources:
+            requests:
+              cpu: "1"
+              memory: "500Mi"
+            limits:
+              cpu: "2"
+              memory: "1Gi"
+      volumes:
+        - name: radarr
+          persistentVolumeClaim:
+            claimName: radarr
+        - name: movies
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/movies
+        - name: downloads
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/music-downloads
+

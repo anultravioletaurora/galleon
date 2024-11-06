@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: doplarr
+data:
+  sonarr_url: http://10.43.1.31:8989
+  radarr_url: http://10.43.1.32:7878
+

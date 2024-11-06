@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doplarr
+  labels:
+    app.kubernetes.io/name: doplarr
+    app.kubernetes.io/instance: doplarr
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # < New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: doplarr
+      app.kubernetes.io/instance: doplarr
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: doplarr
+        app.kubernetes.io/instance: doplarr
+    spec:
+      containers:
+        - name: doplarr
+          image: linuxserver/doplarr:3.6.3
+          env: 
+            - name: DISCORD__TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: doplarr
+                  key: discord_token
+            - name: SONARR__URL
+              valueFrom:
+                configMapKeyRef:
+                  name: doplarr
+                  key: sonarr_url
+            - name: SONARR__API
+              valueFrom:
+                secretKeyRef:
+                  name: doplarr
+                  key: sonarr_api_key
+            - name: RADARR__URL
+              valueFrom:
+                configMapKeyRef:
+                  name: doplarr
+                  key: radarr_url
+            - name: RADARR__API
+              valueFrom:
+                secretKeyRef:
+                  name: doplarr
+                  key: radarr_api_key
+          volumeMounts:
+            - name: doplarr
+              mountPath: /config
+      volumes:
+        - name: doplarr
+          persistentVolumeClaim:
+            claimName: doplarr
+---

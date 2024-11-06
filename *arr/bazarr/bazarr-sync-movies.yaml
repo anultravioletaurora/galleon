@@ -1,0 +1,50 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: bazarr-sync-movies
+spec:
+  schedule: "1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: bazarr-sync
+            image: ghcr.io/ajmandourah/bazarr-sync
+            command:
+              - /bin/sh
+              - -c
+              - bazarr-sync --config /usr/src/app/config.yaml sync movies;
+            volumeMounts:
+              - name: bazarr-sync
+                mountPath: /usr/src/app/config.yaml
+                subPath: config.yaml
+              - name: tvshows
+                mountPath: /tvshows
+              - name: movies
+                mountPath: /movies
+
+          volumes:
+            - name: bazarr-sync
+              secret:
+                secretName: bazarr-sync
+            - name: tvshows
+              flexVolume:
+                driver: "fstab/cifs"
+                fsType: "fstab/cifs"
+                secretRef:
+                  name: "cifs-secret"
+                options:
+                  networkPath: "//10.10.37.2/tvshows"
+                  mountOptions: "rw,_netdev,noserverino,file_mode=0777,dir_mode=0777"
+            - name: movies
+              flexVolume:
+                driver: "fstab/cifs"
+                fsType: "fstab/cifs"
+                secretRef:
+                  name: "cifs-secret"
+                options:
+                  networkPath: "//10.10.37.2/movies"
+                  mountOptions: "rw,_netdev,noserverino,file_mode=0777,dir_mode=0777"
+---

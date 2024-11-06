@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lidarr
+  labels:
+    app.kubernetes.io/name: lidarr
+    app.kubernetes.io/instance: lidarr
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: lidarr
+      app.kubernetes.io/instance: lidarr
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: lidarr
+        app.kubernetes.io/instance: lidarr
+    spec:
+      containers:
+        - name: lidarr
+          image: ghcr.io/hotio/lidarr:pr-plugins-2.8.1.4433
+          ports:
+            - containerPort: 8686
+          volumeMounts:
+            - name: lidarr
+              mountPath: "/config"
+              subPath: "config"
+            - name: music
+              mountPath: /music
+            - name: downloads
+              mountPath: /downloads
+          resources:
+            limits:
+              memory: "8Gi"
+            requests:
+              memory: "6Gi"
+
+      volumes:
+        - name: lidarr
+          persistentVolumeClaim:
+            claimName: lidarr
+        - name: music
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/music
+        - name: downloads
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/music-downloads
+---
+
+
+
