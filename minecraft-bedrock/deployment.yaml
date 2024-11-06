@@ -2,6 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: minecraft
+  labels:
+    app.kubernetes.io/name: minecraft
+    app.kubernetes.io/instance: minecraft
+
 spec:
   strategy:
     rollingUpdate:
