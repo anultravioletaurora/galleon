@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zap2xml
+  labels:
+    app.kubernetes.io/name: zap2xml
+    app.kubernetes.io/instance: zap2xml
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # < New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zap2xml
+      app.kubernetes.io/instance: zap2xml
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: zap2xml
+        app.kubernetes.io/instance: zap2xml
+    spec:
+      containers:
+        - name: zap2xml
+          image: shuaiscott/zap2xml
+          env:
+            - name: TZ
+              value: "America/Chicago"
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: jellyfin-secrets
+                  key: zap2it-username
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: jellyfin-secrets
+                  key: zap2it-password
+            - name: XMLTV_FILENAME
+              valueFrom:
+                configMapKeyRef:
+                  key: zap2it-filename
+                  name: jellyfin-cm
+            - name: OPTS_ARGS
+              valueFrom:
+                configMapKeyRef:
+                  key: zap2it-optargs
+                  name: jellyfin-cm
+          volumeMounts:
+            - name: config
+              mountPath: "/config"
+            - name: zap2it
+              mountPath: "/data" 
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: zap2xml
+        - name: zap2it
+          persistentVolumeClaim:
+            claimName: zap2it
+            

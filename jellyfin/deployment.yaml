@@ -44,6 +44,8 @@ spec:
           volumeMounts:
             - name: config
               mountPath: "/config"
+            - name: zap2it
+              mountPath: /media/xmltv 
             - name: tvshows
               mountPath: /media/tvshows
             - name: movies
@@ -75,15 +77,20 @@ spec:
                   
           resources:
             limits:
+              cpu: 6
               memory: "14Gi"
               nvidia.com/gpu: "1" 
             requests:
+              cpu: 4
               memory: "12Gi" 
               nvidia.com/gpu: "1"
       volumes:
         - name: config
           persistentVolumeClaim:
             claimName: jellyfin
+        - name: zap2it
+          persistentVolumeClaim:
+            claimName: zap2it 
         - name: movies
           nfs:
             server: unraid.cosmonautical.cloud
