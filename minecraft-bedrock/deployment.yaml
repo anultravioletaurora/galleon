@@ -89,7 +89,16 @@ spec:
             - name: minecraft-bedrock
               mountPath: "/data"
               subPath: "data"
+            - name: minecraft-bedrock-addons
+              mountPath: "/data/resource_packs"
+              subPath: "resource_packs"
+            - name: minecraft-bedrock-addons
+              mountPath: "/data/behavior_packs"
+              subPath: "behavior_packs"
       volumes:
         - name: minecraft-bedrock
           persistentVolumeClaim:
             claimName: minecraft-bedrock
+        - name: minecraft-bedrock-addons
+          persistentVolumeClaim:
+            claimName: minecraft-bedrock-addons
