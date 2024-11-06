@@ -8,3 +8,5 @@ data:
   gamemode: "survival"
   allow_cheats: "true"
   view_distance: "40"
+  addons:
+    - https://pixelpoly.co/content/experimental-actualguns-3d#

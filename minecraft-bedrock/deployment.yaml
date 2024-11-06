@@ -23,10 +23,26 @@ spec:
     spec:
       initContainers:
         - name: minecraft-bedrock-init
+          image: busybox
+          env:
+            - name: MOD_PACKS
+              valueFrom:
+                configMapKeyRef:
+                  key: version
+                  name: minecraft-bedrock-cm          
+          command:
+            - /bin/bash
+            - -c
+          args:
+            - for mod in \$MOD\_PACKS; do wget $i; done
+          workingDir: "/tmp"
+          volumeMounts:
+            - name: minecraft-bedrock
+              mountPath: "/data"
+              subPath: "data"
       containers:
         - name: minecraft-bedrock
           image: itzg/minecraft-server:2024.7.2
-          imagePullPolicy: Always
           ports: 
             - containerPort: 19132
               protocol: UDP
@@ -81,5 +97,3 @@ spec:
         - name: minecraft-cm
           configMap:
             name: minecraft-cm
-            defaultMode: 0555 # Makes scripts executable: https://github.com/kubernetes/kubernetes/issues/71356#issuecomment-441169334
-
