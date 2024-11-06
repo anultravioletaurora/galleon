@@ -33,7 +33,7 @@ spec:
           args:
             - echo $ADDONS;
             - for mod in "${ADDONS}"; do echo "Fetching $mod" && wget "$mod"; done
-          workingDir: /tmp
+          workingDir: /data/tmp/folder/
           volumeMounts:
             - name: minecraft-bedrock
               mountPath: "/data"
