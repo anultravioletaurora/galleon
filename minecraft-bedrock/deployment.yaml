@@ -34,7 +34,7 @@ spec:
             - sh
             - -c
           args:
-            - echo $ADDONS &&
+            - echo $ADDONS;
             - for mod in "${ADDONS}"; do echo "Fetching $mod" && wget "$mod"; done
           workingDir: /tmp
           volumeMounts:
