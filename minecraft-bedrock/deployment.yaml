@@ -25,16 +25,16 @@ spec:
         - name: minecraft-bedrock-init
           image: busybox
           env:
-            - name: MOD_PACKS
+            - name: ADDONS
               valueFrom:
                 configMapKeyRef:
-                  key: version
+                  key: addons
                   name: minecraft-bedrock-cm          
           command:
             - /bin/bash
             - -c
           args:
-            - for mod in \$MOD\_PACKS; do wget $i; done
+            - for mod in \$ADDONS; do wget $i; done
           workingDir: "/tmp"
           volumeMounts:
             - name: minecraft-bedrock
@@ -94,6 +94,3 @@ spec:
         - name: minecraft-bedrock
           persistentVolumeClaim:
             claimName: minecraft-bedrock
-        - name: minecraft-cm
-          configMap:
-            name: minecraft-cm
