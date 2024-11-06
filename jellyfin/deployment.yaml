@@ -84,6 +84,11 @@ spec:
               cpu: 4
               memory: "12Gi" 
               nvidia.com/gpu: "1"
+      tolerations:
+        - key: "gpu"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
       volumes:
         - name: config
           persistentVolumeClaim:
