@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
     name: authentik-custom-css
-stringData:
+data:
     custom.css: |-
       :root {
           --ak-accent: var(--pf-global--palette--purple-200) !important;
