@@ -88,8 +88,6 @@ spec:
             - name: minecraft-bedrock
               mountPath: "/data"
               subPath: "data"
-            - name: minecraft-cm
-              mountPath: "/extras"
       volumes:
         - name: minecraft-bedrock
           persistentVolumeClaim:
