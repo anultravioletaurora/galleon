@@ -31,10 +31,11 @@ spec:
                   key: addons
                   name: minecraft-bedrock-cm          
           command:
-            - /bin/sh
+            - sh
             - -c
           args:
-            - for mod in "${ADDONS[@]}"; do echo "Fetching $mod" && wget "$mod"; done
+            - echo $ADDONS &&
+            - for mod in "${ADDONS}"; do echo "Fetching $mod" && wget "$mod"; done
           workingDir: /tmp
           volumeMounts:
             - name: minecraft-bedrock
