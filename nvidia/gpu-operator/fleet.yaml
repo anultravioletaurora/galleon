@@ -1,4 +1,4 @@
-defaultNamespace: nvidia-gpu-operator
+namespace: nvidia-gpu-operator
 helm:
   chart: 'gpu-operator'
   repo: 'https://helm.ngc.nvidia.com/nvidia'
@@ -25,6 +25,6 @@ helm:
           value: "false"
 
   releaseName: nvidia-gpu-operator
-paused: true
+paused: false
 dependsOn:
   - name: galleon-nvidia-runtime
