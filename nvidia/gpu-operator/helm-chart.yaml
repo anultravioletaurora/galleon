@@ -1,0 +1,31 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: gpu-operator
+  namespace: kube-system
+spec:
+  repo: https://helm.ngc.nvidia.com/nvidia
+  chart: gpu-operator
+  targetNamespace: gpu-operator
+  valuesContent: |-
+    devicePlugin:
+      config:
+        name: time-slicing-config
+        default: any
+    driver: 
+      enabled: true
+      usePrecompiled: true
+      version: 550
+    toolkit: 
+      enabled: true
+
+    toolkit:
+      env:
+      - name: CONTAINERD_SOCKET
+        value: /run/k3s/containerd/containerd.sock
+      - name: CONTAINERD_CONFIG
+        value: "/var/lib/rancher/rke2/agent/etc/containerd/config.toml"
+      - name: "CONTAINERD_RUNTIME_CLASS"
+        value: "nvidia"
+      - name: "CONTAINERD_SET_AS_DEFAULT"
+        value: "false"
