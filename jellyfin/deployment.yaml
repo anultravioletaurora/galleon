@@ -88,7 +88,7 @@ spec:
         - key: "gpu"
           operator: "Equal"
           value: "true"
-          effect: "NoSchedule"
+          effect: "PreferNoSchedule"
       volumes:
         - name: config
           persistentVolumeClaim:
