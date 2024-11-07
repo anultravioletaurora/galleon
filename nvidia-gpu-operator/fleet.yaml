@@ -11,6 +11,7 @@ helm:
     driver: 
       enabled: true
       usePrecompiled: true
+      version: 550
     toolkit: 
       enabled: true
       env:
