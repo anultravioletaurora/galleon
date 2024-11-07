@@ -21,3 +21,4 @@ helm:
         key: values.yaml
 dependsOn:
   - name: galleon-authentik-styling
+  - name: galleon-authentik-blueprints

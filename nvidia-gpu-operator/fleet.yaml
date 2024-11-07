@@ -10,6 +10,7 @@ helm:
         default: any
     driver: 
       enabled: true
+      usePrecompiled: true
     toolkit: 
       enabled: true
       env:
