@@ -33,5 +33,5 @@ spec:
               nfs:
                 server: unraid.cosmonautical.cloud
                 path: /mnt/user/movies
-          restartPolicy: never
+          restartPolicy: Never
 ---
