@@ -18,6 +18,6 @@ helm:
         - name: CONTAINERD_SOCKET
           value: /run/k3s/containerd/containerd.sock
   releaseName: nvidia-gpu-operator
-paused: false
+paused: true
 dependsOn:
   - name: galleon-nvidia-runtime
