@@ -12,9 +12,6 @@ helm:
       enabled: true
       usePrecompiled: true
       version: 550
-      startupProbe: 
-        initialDelaySeconds: 120
-        periodSeconds: 10
     toolkit: 
       enabled: true
       env:
