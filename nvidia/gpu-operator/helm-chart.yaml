@@ -1,12 +1,12 @@
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
-  name: gpu-operator
+  name: nvidia-gpu-operator
   namespace: kube-system
 spec:
   repo: https://helm.ngc.nvidia.com/nvidia
   chart: gpu-operator
-  targetNamespace: gpu-operator
+  targetNamespace: nvidia-gpu-operator
   valuesContent: |-
     devicePlugin:
       config:
