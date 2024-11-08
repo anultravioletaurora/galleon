@@ -36,9 +36,9 @@ spec:
               mountPath: /downloads
           resources:
             limits:
-              memory: "6Gi"
-            requests:
               memory: "4Gi"
+            requests:
+              memory: "2Gi"
 
       volumes:
         - name: lidarr

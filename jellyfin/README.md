@@ -1,6 +1,6 @@
 # Jellyfin
 
-## Deployment
+### Deployment
 Deployment rolls out Zap2It for handling live TV guides and fetches the latest version of the [Jellynautical](https://github.com/anultravioletaurora/Jellynautical) CSS theme.
 
 ### Noteworthy Plugins
