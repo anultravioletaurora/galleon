@@ -8,6 +8,5 @@ spec:
   resources:
     requests:
       storage: 100Gi
-  storageClassName: ""
-  volumeName: pvc-6a61e52a-e9d0-4048-a831-defba6efe91e    
+  storageClassName: "harvester"
 ---
