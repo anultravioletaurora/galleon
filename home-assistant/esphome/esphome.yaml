@@ -1,0 +1,41 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: esphome
+  
+  labels:
+    app.kubernetes.io/name: esphome
+    app.kubernetes.io/instance: esphome
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # < New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: esphome
+      app.kubernetes.io/instance: esphome
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: esphome
+        app.kubernetes.io/instance: esphome
+    spec:
+      # I think this will allow ESPHome to better communicate with the ESP devices?
+      hostNetwork: true
+      containers:
+        - name: esphome
+          image: esphome/esphome:2024.8.3
+          ports:
+            - containerPort: 6052
+          volumeMounts:
+            - mountPath: "/config"
+              name: esphome
+      volumes:
+      - name: esphome
+        persistentVolumeClaim:
+          claimName: esphome
+---

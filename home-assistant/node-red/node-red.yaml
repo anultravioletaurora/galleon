@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-red
+  
+  labels:
+    app.kubernetes.io/name: node-red
+    app.kubernetes.io/instance: node-red
+spec:
+  replicas: 1
+  strategy:
+    type: "Recreate"
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: node-red
+      app.kubernetes.io/instance: node-red
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: node-red
+        app.kubernetes.io/instance: node-red
+    spec:
+      containers:
+        - name: node-red
+          image: nodered/node-red:4.0.2
+          ports:
+            - containerPort: 1880
+          volumeMounts:
+            - mountPath: "/data"
+              name: node-red
+
+      volumes:
+        - name: node-red
+          persistentVolumeClaim:
+            claimName: node-red
+---

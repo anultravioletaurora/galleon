@@ -1,0 +1,43 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosquitto
+  labels:
+    app.kubernetes.io/name: mosquitto
+    app.kubernetes.io/instance: mosquitto
+spec:
+  replicas: 1
+  strategy:
+    type: "Recreate"
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mosquitto
+      app.kubernetes.io/instance: mosquitto
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mosquitto
+        app.kubernetes.io/instance: mosquitto
+    spec:
+      containers:
+        - name: mosquitto
+          image: eclipse-mosquitto:2.0.18
+          ports:
+            - containerPort: 1883
+            - containerPort: 9001
+          volumeMounts:
+            - mountPath: "/mosquitto/config"
+              name: mosquitto
+            - mountPath: "/mosquitto/config/mosquitto.conf"
+              name: mosquitto-config
+              subPath: mosquitto.conf
+
+      volumes:
+        - name: mosquitto
+          persistentVolumeClaim:
+            claimName: mosquitto
+        - name: mosquitto-config
+          configMap:
+            name: mosquitto-config
+---
