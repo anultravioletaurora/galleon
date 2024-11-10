@@ -8,5 +8,5 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: Harvester
+  storageClassName: harvester
 ---
