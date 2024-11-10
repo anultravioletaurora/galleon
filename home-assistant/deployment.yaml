@@ -6,9 +6,12 @@ metadata:
     app.kubernetes.io/name: home-assistant
     app.kubernetes.io/instance: home-assistant
 spec:
-  replicas: 1
   strategy:
-    type: "Recreate"
+    rollingUpdate:
+      maxSurge: 1                 # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 0           # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # < New pods are added gradually, and old pods are terminated gradually
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: home-assistant
