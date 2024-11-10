@@ -7,6 +7,7 @@ metadata:
     app.kubernetes.io/instance: jellyfin
 spec:
   type: ClusterIP
+  clusterIP: 10.43.11.216
   ports:
     - port: 8096
       targetPort: 8096

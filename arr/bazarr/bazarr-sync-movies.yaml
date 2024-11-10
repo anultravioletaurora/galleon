@@ -1,14 +1,10 @@
 apiVersion: batch/v1
-kind: CronJob
+kind: Job
 metadata:
   name: bazarr-sync-movies
 spec:
-  schedule: "1 * * * *"
-  jobTemplate:
+  template:
     spec:
-      template:
-        spec:
-          restartPolicy: OnFailure
           containers:
           - name: bazarr-sync
             image: ghcr.io/ajmandourah/bazarr-sync
@@ -30,21 +26,12 @@ spec:
               secret:
                 secretName: bazarr-sync
             - name: tvshows
-              flexVolume:
-                driver: "fstab/cifs"
-                fsType: "fstab/cifs"
-                secretRef:
-                  name: "cifs-secret"
-                options:
-                  networkPath: "//10.10.37.2/tvshows"
-                  mountOptions: "rw,_netdev,noserverino,file_mode=0777,dir_mode=0777"
+              nfs:
+                server: unraid.cosmonautical.cloud
+                path: /mnt/user/tvshows
             - name: movies
-              flexVolume:
-                driver: "fstab/cifs"
-                fsType: "fstab/cifs"
-                secretRef:
-                  name: "cifs-secret"
-                options:
-                  networkPath: "//10.10.37.2/movies"
-                  mountOptions: "rw,_netdev,noserverino,file_mode=0777,dir_mode=0777"
+              nfs:
+                server: unraid.cosmonautical.cloud
+                path: /mnt/user/movies
+          restartPolicy: Never
 ---

@@ -8,8 +8,8 @@ metadata:
 spec:
   strategy:
     rollingUpdate:
-      maxSurge: 0                 # The number of pods that can be created above the desired amount of pods during an update
-      maxUnavailable: 1           # The number of pods that can be unavailable during the update process
+      maxSurge: 1                 # The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 0           # The number of pods that can be unavailable during the update process
     type: RollingUpdate           # New pods are added gradually, and old pods are terminated gradually
   selector:
     matchLabels:
@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: sonarr
-          image: ghcr.io/hotio/sonarr:release-4.0.9.2244
+          image: ghcr.io/hotio/sonarr:release-4.0.10.2544
           ports:
             - containerPort: 8989
           volumeMounts:

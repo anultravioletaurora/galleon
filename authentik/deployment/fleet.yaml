@@ -2,7 +2,7 @@ defaultNamespace: cosmonautical
 helm: 
   chart: 'authentik'
   repo: 'https://charts.goauthentik.io/'
-  version: 2024.10.0
+  version: 2024.10.1
   values:
     global:
       volumeMounts:
@@ -21,3 +21,4 @@ helm:
         key: values.yaml
 dependsOn:
   - name: galleon-authentik-styling
+  - name: galleon-authentik-blueprints
