@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mosquitto-config
+data:
+  mosquitto.conf: |
+    # Mosquitto Configuration
+    listener 1883
+    allow_anonymous true
+    log_dest file /var/log/mosquitto/mosquitto.log
+    log_type all
