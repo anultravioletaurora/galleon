@@ -26,7 +26,7 @@ spec:
       hostNetwork: true
       containers:
         - name: home-assistant
-          image: homeassistant/home-assistant:2024.10.4
+          image: homeassistant/home-assistant:2024.11.0
           ports:
             - containerPort: 8123
             - containerPort: 1400
