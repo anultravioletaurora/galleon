@@ -21,9 +21,6 @@ spec:
         app.kubernetes.io/name: lidarr
         app.kubernetes.io/instance: lidarr
     spec:
-      nodeSelector:
-        nvidia.com/gpu.present: "false" # Saving this for non-specialized nodes
-
       containers:
         - name: lidarr
           image: ghcr.io/hotio/lidarr:pr-plugins-2.8.1.4433
