@@ -40,7 +40,7 @@ spec:
             - name: DEEMIX_ARL
               valueFrom:
                 secretKeyRef:
-                  name: lidarr-proxy
+                  name: lidarr
                   key: deemix_arl
 ---
 
