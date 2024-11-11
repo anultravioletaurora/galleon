@@ -1,0 +1,15 @@
+# nextcloud PVC for config
+apiVersion: "v1"
+kind: "PersistentVolumeClaim"
+metadata:
+  name: ansible-semaphore-db
+  labels:
+    app.kubernetes.io/name: ansible-semaphore-db
+    app.kubernetes.io/instance: ansible-semaphore-db
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "5Gi"
+---

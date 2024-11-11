@@ -13,4 +13,5 @@ data:
     # tail -f ~/nohup_*.txt
     set OUTPUT=ls ~/
     echo $OUTPUT
-
+  override_musicbrainz: "true"
+  prioritize_deemix: "true"

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ansible-semaphore
+data:
+  admin: "valentina"
+  admin_name: "Valentina Tereshkova"
+  db_name: "semaphore"
+  db_user: "semaphore"
+  db_host: "10.43.1.51"

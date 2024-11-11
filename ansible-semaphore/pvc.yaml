@@ -1,0 +1,16 @@
+# ansible-semaphore PVC for config
+kind: "PersistentVolumeClaim"
+apiVersion: "v1"
+metadata:
+  name: ansible-semaphore
+  labels:
+    app.kubernetes.io/name: ansible-semaphore
+    app.kubernetes.io/instance: ansible-semaphore
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "20Gi"
+  storageClassName: harvester
+---

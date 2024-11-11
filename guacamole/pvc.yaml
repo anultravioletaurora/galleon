@@ -8,8 +8,9 @@ metadata:
     app.kubernetes.io/instance: guacamole
 spec:
   accessModes:
-    - "ReadWriteMany"
+    - "ReadWriteOnce"
   resources:
     requests:
       storage: "5Gi"
+  storageClassName: harvester  
 ---

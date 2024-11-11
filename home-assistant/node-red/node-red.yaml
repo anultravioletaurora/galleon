@@ -28,6 +28,7 @@ spec:
           volumeMounts:
             - mountPath: "/data"
               name: node-red
+              subPath: node-red
 
       volumes:
         - name: node-red

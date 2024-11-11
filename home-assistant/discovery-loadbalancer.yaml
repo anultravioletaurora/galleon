@@ -11,6 +11,10 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
+    - port: 8123 # Added web ui for convenience
+      targetPort: 8123
+      protocol: TCP
+      name: http
     - port: 1400
       targetPort: 1400
       protocol: TCP
