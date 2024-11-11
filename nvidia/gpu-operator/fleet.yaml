@@ -2,7 +2,7 @@ defaultNamespace: nvidia-gpu-operator
 helm:
   chart: 'gpu-operator'
   repo: 'https://helm.ngc.nvidia.com/nvidia'
-  version: 24.9.0 # https://github.com/NVIDIA/gpu-operator/issues/1109
+  version: 24.6.2 # https://github.com/NVIDIA/gpu-operator/issues/1109
   values:
     devicePlugin:
       config:
@@ -10,11 +10,8 @@ helm:
         default: any
     driver: 
       enabled: true
-      usePrecompiled: true
-      version: 550
     toolkit: 
       enabled: true
-      version: 1.17.1
       env:
         - name: CONTAINERD_SOCKET
           value: /run/k3s/containerd/containerd.sock
