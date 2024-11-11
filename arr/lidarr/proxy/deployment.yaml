@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: lidarr-proxy
-          image: ghcr.io/ad-on-is/lidarr-deemix
+          image: ghcr.io/ad-on-is/lidarr-deemix:2.1.10
           ports:
             - containerPort: 8080
           env: 
