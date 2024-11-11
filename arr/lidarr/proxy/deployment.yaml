@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lidarr-proxy
+  labels:
+    app.kubernetes.io/name: lidarr-proxy
+    app.kubernetes.io/instance: lidarr-proxy
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: lidarr-proxy
+      app.kubernetes.io/instance: lidarr-proxy
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: lidarr-proxy
+        app.kubernetes.io/instance: lidarr-proxy
+    spec:
+      containers:
+        - name: lidarr-proxy
+          image: ghcr.io/ad-on-is/lidarr-deemix
+          ports:
+            - containerPort: 8080
+          env: 
+            - name: PRIO_DEEMIX
+              valueFrom:
+                configMapKeyRef:
+                  name: lidarr
+                  key: prioritize_deemix
+            - name: OVERRIDE_MB # set to true to override MusicBrainz completely !!! CAUTION !!! will delete all artists/albums imported from MB
+              valueFrom:
+                configMapKeyRef:
+                  name: lidarr
+                  key: override_musicbrainz
+            - name: DEEMIX_ARL
+              valueFrom:
+                secretKeyRef:
+                  name: lidarr-proxy
+                  key: deemix_arl
+---
+
+
+
