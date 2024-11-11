@@ -30,7 +30,7 @@ spec:
           env: 
             - name: POSTGRES_USER
               valueFrom:
-                configMapKeyRef::
+                configMapKeyRef:
                   name: ansible-semaphore
                   key: db_user
             - name: POSTGRES_PASSWORD
