@@ -12,6 +12,7 @@ helm:
       enabled: true
     toolkit: 
       enabled: true
+      version: 1.17.1
       env:
         - name: CONTAINERD_SOCKET
           value: /run/k3s/containerd/containerd.sock
