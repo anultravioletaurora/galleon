@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: ansible-semaphore
-          image: semaphoreui/semaphore:v2.10.22
+          image: semaphoreui/semaphore:v2.10.35
           ports:
             - containerPort: 3000
           env:
@@ -47,7 +47,7 @@ spec:
               value: "5432" 
             - name: SEMAPHORE_DB_DIALECT
               value: postgres # for postgres, change to: postgres
-              
+
             - name: SEMAPHORE_DB
               valueFrom:
                 configMapKeyRef:
