@@ -21,8 +21,11 @@ spec:
         app.kubernetes.io/name: lidarr-proxy
         app.kubernetes.io/instance: lidarr-proxy
     spec:
+
       containers:
         - name: lidarr-proxy
+          securityContext:
+            privileged: true
           image: ghcr.io/ad-on-is/lidarr-deemix:2.1.10
           ports:
             - containerPort: 8080
