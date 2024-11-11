@@ -10,6 +10,8 @@ helm:
         default: any
     driver: 
       enabled: true
+      usePrecompiled: true
+      version: 550
     toolkit: 
       enabled: true
       version: 1.17.1
