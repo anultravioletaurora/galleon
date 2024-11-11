@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: ansible-semaphore-db
     app.kubernetes.io/instance: ansible-semaphore-db
 spec:
-  type: clusterIP
+  type: ClusterIP
   clusterIP: 10.43.1.51
   ports:
     - port: 5432
