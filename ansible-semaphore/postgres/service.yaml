@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ansible-semaphore-db
+  annotations:
+  labels:
+    app.kubernetes.io/name: ansible-semaphore-db
+    app.kubernetes.io/instance: ansible-semaphore-db
+spec:
+  type: clusterIP
+  clusterIP: 10.43.1.51
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
+      name: ansible-semaphore-db
+  selector:
+    app.kubernetes.io/name: ansible-semaphore-db
+    app.kubernetes.io/instance: ansible-semaphore-db

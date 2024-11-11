@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ansible-semaphore
+  labels:
+    app.kubernetes.io/name: ansible-semaphore
+    app.kubernetes.io/instance: ansible-semaphore
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ansible-semaphore
+      app.kubernetes.io/instance: ansible-semaphore
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: ansible-semaphore
+        app.kubernetes.io/instance: ansible-semaphore
+    spec:
+      containers:
+        - name: ansible-semaphore
+          image: semaphoreui/semaphore:v2.10.22
+          ports:
+            - containerPort: 3000
+          env:
+            - name: SEMAPHORE_DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: ansible-semaphore
+                  key: db_user
+            - name: SEMAPHORE_DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: ansible-semaphore
+                  key: db_password
+            - name: SEMAPHORE_DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: ansible-semaphore
+                  key: db_host
+
+            - name: SEMAPHORE_DB_PORT
+              value: "5432" 
+            - name: SEMAPHORE_DB_DIALECT
+              value: postgres # for postgres, change to: postgres
+              
+            - name: SEMAPHORE_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: ansible-semaphore
+                  key: db_name
+
+            - name: SEMAPHORE_PLAYBOOK_PATH
+              value: /tmp/semaphore/
+
+            - name: SEMAPHORE_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ansible-semaphore
+                  key: admin_password
+
+            - name: SEMAPHORE_ADMIN_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: ansible-semaphore
+                  key: admin_name
+
+            - name: SEMAPHORE_ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: ansible-semaphore
+                  key: admin_email
+
+            - name: SEMAPHORE_ADMIN
+              valueFrom:
+                configMapKeyRef:
+                  name: ansible-semaphore
+                  key: admin
+
+            - name: SEMAPHORE_ACCESS_KEY_ENCRYPTION
+              valueFrom:
+                secretKeyRef:
+                  name: ansible-semaphore
+                  key: access-key-encryption
+
+            - name: SEMAPHORE_LDAP_ACTIVATED
+              value: 'no' # if you wish to use ldap, set to: 'yes' 
+
+          volumeMounts:
+            - name: ansible-semaphore
+              mountPath: "/etc/semaphore"
+              subPath: config
+      volumes:
+        - name: ansible-semaphore
+          persistentVolumeClaim:
+            claimName: ansible-semaphore
+---
