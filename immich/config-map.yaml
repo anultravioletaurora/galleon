@@ -5,7 +5,7 @@ metadata:
 data:
   db_hostname: "10.43.1.46"
   db_name: immich
-  db_username: valentina
+  db_user: valentina
   machine_learning_port: "3003"
   machine_learning_url: "http://10.43.1.45:3003"
   redis_hostname: "10.43.1.47"

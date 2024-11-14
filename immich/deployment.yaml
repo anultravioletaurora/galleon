@@ -41,12 +41,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: immich
-                  key: db-password
+                  key: db_password
             - name: "DB_USERNAME"
               valueFrom:
-                secretKeyRef:
+                configMapKeyRef:
                   name: immich
-                  key: db-username
+                  key: db_user
             - name: DB_DATABASE_NAME
               valueFrom:
                 configMapKeyRef:
