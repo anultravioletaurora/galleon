@@ -89,7 +89,6 @@ spec:
 
             - name: SEMAPHORE_LDAP_ACTIVATED
               value: 'no' # if you wish to use ldap, set to: 'yes' 
-
           volumeMounts:
             - name: ansible-semaphore
               mountPath: "/etc/semaphore"
