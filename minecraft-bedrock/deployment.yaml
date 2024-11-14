@@ -50,6 +50,11 @@ spec:
           env: 
             - name: EULA
               value: "true"
+            - name: ALLOW_LIST_USERS
+              valueFrom:
+                configMapKeyRef: 
+                  key: allowlist_users
+                  name: minecraft-bedrock-cm
             - name: VERSION
               valueFrom:
                 configMapKeyRef:
