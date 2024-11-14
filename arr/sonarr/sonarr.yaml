@@ -48,7 +48,7 @@ spec:
       - name: downloads
         nfs:
             server: unraid.cosmonautical.cloud
-            path: /mnt/user/music-downloads
+            path: /mnt/user/downloads
 
 ---
 
