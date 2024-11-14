@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immich-ml
+  labels:
+    app.kubernetes.io/name: immich-ml
+    app.kubernetes.io/instance: immich-ml
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: immich-ml
+      app.kubernetes.io/instance: immich-ml
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: immich-ml
+        app.kubernetes.io/instance: immich-ml
+    spec:
+      runtimeClassName: nvidia
+      containers:
+        - name: immich-machine-learning
+          image: ghcr.io/immich-app/immich-machine-learning:v1.117.0-cuda
+          ports:
+            - containerPort: 3003
+          env:
+            - name: IMMICH_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: immich
+                  key: machine_learning_port
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: all
+            - name: NVIDIA_DRIVER_CAPABILITIES
+              value: all
+          resources:
+            limits:
+              nvidia.com/gpu: '1'
