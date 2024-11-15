@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immich-redis
+  labels:
+    app.kubernetes.io/name: immich-redis
+    app.kubernetes.io/instance: immich-redis
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 0                 # The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: immich-redis
+      app.kubernetes.io/instance: immich-redis
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: immich-redis
+        app.kubernetes.io/instance: immich-redis
+    spec:
+      containers:
+        - name: immich-redis
+          image: redis:7.2-alpine@sha256:ef3296cb1b3a7eb40f2a992a398777a1c0b5b21df44f1a5bef84067f772daf54
+          ports:
+            - containerPort: 6379

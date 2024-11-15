@@ -1,0 +1,16 @@
+# immich PVC for data
+apiVersion: "v1"
+kind: "PersistentVolumeClaim"
+metadata:
+  name: immich
+  labels:
+    app.kubernetes.io/name: immich
+    app.kubernetes.io/instance: immich
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "20Gi"
+  storageClassName: harvester
+---

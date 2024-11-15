@@ -50,6 +50,11 @@ spec:
           env: 
             - name: EULA
               value: "true"
+            - name: ALLOW_LIST_USERS
+              valueFrom:
+                configMapKeyRef: 
+                  key: allowlist_users
+                  name: minecraft-bedrock-cm
             - name: VERSION
               valueFrom:
                 configMapKeyRef:
@@ -95,6 +100,13 @@ spec:
             - name: minecraft-bedrock-addons
               mountPath: "/data/behavior_packs"
               subPath: "behavior_packs"
+            - name: minecraft-bedrock-cm
+              mountPath: "/data/worlds/Cosmonautical/world_behavior_packs.json"
+              subPath: "world_resource_packs.json"
+            - name: minecraft-bedrock-cm
+              mountPath: "/data/worlds/Cosmonautical/world_resource_packs.json"
+              subPath: "world_resource_packs.json"
+
       volumes:
         - name: minecraft-bedrock
           persistentVolumeClaim:
@@ -102,3 +114,6 @@ spec:
         - name: minecraft-bedrock-addons
           persistentVolumeClaim:
             claimName: minecraft-bedrock-addons
+        - name: minecraft-bedrock-cm
+          configMap:
+            name: minecraft-bedrock-cm
