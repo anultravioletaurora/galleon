@@ -2,14 +2,15 @@
 apiVersion: "v1"
 kind: "PersistentVolumeClaim"
 metadata:
-  name: postgres
+  name: nextcloud
   labels:
-    app.kubernetes.io/name: postgres
-    app.kubernetes.io/instance: postgres
+    app.kubernetes.io/name: nextcloud
+    app.kubernetes.io/instance: nextcloud
 spec:
   accessModes:
     - "ReadWriteMany"
   resources:
     requests:
-      storage: "20Gi"
+      storage: "40Gi"
+  storageClassName: nfs
 ---

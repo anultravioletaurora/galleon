@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: postgres
+  name: nextcloud-db
   labels:
-    app.kubernetes.io/name: postgres
-    app.kubernetes.io/instance: postgres
+    app.kubernetes.io/name: nextcloud-db
+    app.kubernetes.io/instance: nextcloud-db
 spec:
   strategy:
     rollingUpdate:
@@ -14,39 +14,39 @@ spec:
   replicas: 3 
   selector:
     matchLabels:
-      app.kubernetes.io/name: postgres
-      app.kubernetes.io/instance: postgres
+      app.kubernetes.io/name: nextcloud-db
+      app.kubernetes.io/instance: nextcloud-db
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: postgres
-        app.kubernetes.io/instance: postgres
+        app.kubernetes.io/name: nextcloud-db
+        app.kubernetes.io/instance: nextcloud-db
     spec:
       containers:
-        - name: postgres
+        - name: nextcloud-db
           image: "postgres:15.7-bookworm"
           ports:
             - containerPort: 5432
           env: 
             - name: POSTGRES_USER
               valueFrom:
-                secretKeyRef:
-                  name: postgres-secrets
-                  key: username
+                configMapKeyRef:
+                  name: nextcloud
+                  key: db_user
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres-secrets
-                  key: password
+                  name: nextcloud
+                  key: db_password
           volumeMounts: 
-            - name: postgres
+            - name: nextcloud
               mountPath: "/var/lib/postgresql/data"
-              subPath: data
+              subPath: postgres
         - name: redis
           image: redis:7.4.0
           ports: 
             - containerPort: 6379
       volumes:
-      - name: postgres
+      - name: nextcloud
         persistentVolumeClaim:
-          claimName: postgres
+          claimName: nextcloud
