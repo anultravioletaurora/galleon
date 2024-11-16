@@ -22,10 +22,6 @@ spec:
       containers:
         - name: nextcloud-db
           image: "postgres:15.7-bookworm"
-          command:
-            - postgres
-            - -c
-            - listen_addresses="*"
           ports:
             - containerPort: 5432
           env: 
@@ -48,6 +44,9 @@ spec:
             - name: nextcloud
               mountPath: "/var/lib/postgresql/data"
               subPath: postgres
+            - name: nextcloud-db-cm
+              mountPath: "/var/lib/postgresql/data/postgresql.conf"
+              subPath: postgresql.conf
         - name: redis
           image: redis:7.4.0
           ports: 
@@ -56,3 +55,6 @@ spec:
       - name: nextcloud
         persistentVolumeClaim:
           claimName: nextcloud
+      - name: nextcloud-db-cm
+        configMap:
+          name: nextcloud-db
