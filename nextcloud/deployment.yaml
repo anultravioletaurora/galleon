@@ -2,9 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nextcloud
-  labels:
-    app.kubernetes.io/name: nextcloud
-    app.kubernetes.io/instance: nextcloud
 spec:
   replicas: 2
   strategy:

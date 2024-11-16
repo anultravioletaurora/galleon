@@ -2,9 +2,6 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: nextcloud-db
-  labels:
-    app.kubernetes.io/name: nextcloud-db
-    app.kubernetes.io/instance: nextcloud-db
 spec:
   strategy:
     rollingUpdate:

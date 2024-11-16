@@ -2,9 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nextcloud-cron
-  labels:
-    app.kubernetes.io/name: nextcloud-cron
-    app.kubernetes.io/instance: nextcloud-cron
 spec:
   replicas: 2
   strategy:
