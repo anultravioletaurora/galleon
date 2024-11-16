@@ -138,10 +138,10 @@ spec:
               subPath: userdata
           
           # Install dependencies for SMB
-          lifecycle:
-            postStart:
-              exec:
-                command: ["/bin/sh", "-c", "apt-get update && apt-get install -y procps smbclient && rm -rf /var/lib/apt/lists/*"]
+          # lifecycle:
+          #   postStart:
+          #     exec:
+          #       command: ["/bin/sh", "-c", "apt-get update && apt-get install -y procps smbclient && rm -rf /var/lib/apt/lists/*"]
       volumes:
         - name: nextcloud
           persistentVolumeClaim:
