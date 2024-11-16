@@ -35,6 +35,11 @@ spec:
                 secretKeyRef:
                   name: nextcloud
                   key: db_password
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: nextcloud
+                  key: db_name
           volumeMounts: 
             - name: nextcloud
               mountPath: "/var/lib/postgresql/data"
