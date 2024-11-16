@@ -40,12 +40,20 @@ spec:
                 configMapKeyRef:
                   name: nextcloud
                   key: db_name
+          lifecycle:
+            postStart:
+              exec:
+                command: 
+                  - "/bin/sh"
+                  - "-c"
+                  - "cp /tmp/postgresql.conf /var/lib/postgresql/data"
+
           volumeMounts: 
             - name: nextcloud
               mountPath: "/var/lib/postgresql/data"
               subPath: postgres
             - name: nextcloud-db-cm
-              mountPath: "/var/lib/postgresql/data/postgresql.conf"
+              mountPath: "/tmp/postgresql.conf"
               subPath: postgresql.conf
         - name: redis
           image: redis:7.4.0
