@@ -4,4 +4,4 @@ metadata:
   name: nextcloud-db
 data:
   postgresql.conf: |
-    listen_addresses = "*"
+    listen_addresses='*'
