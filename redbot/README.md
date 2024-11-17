@@ -1,5 +1,6 @@
 ##### Red Discord Bot
 
 ### Required Secrets
-    secret name: redbot
-    secret key: bot_token
+| Secret | Key | Description |
+|------------------------|-----------------------|---------------------|
+| ```redbot``` | ```bot_token``` | Discord token for this bot |

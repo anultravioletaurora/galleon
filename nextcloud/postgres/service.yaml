@@ -1,13 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres
+  name: nextcloud-db
   annotations:
   labels:
-    app.kubernetes.io/name: postgres
-    app.kubernetes.io/instance: postgres
+    app.kubernetes.io/name: nextcloud-db
+    app.kubernetes.io/instance: nextcloud-db
 spec:
-  type: LoadBalancer
+  type: ClusterIP
+  clusterIP: 10.43.1.61
   ports:
     - port: 5432
       targetPort: 5432
@@ -18,5 +19,5 @@ spec:
       protocol: TCP
       name: redis
   selector:
-    app.kubernetes.io/name: postgres
-    app.kubernetes.io/instance: postgres
+    app.kubernetes.io/name: nextcloud-db
+    app.kubernetes.io/instance: nextcloud-db

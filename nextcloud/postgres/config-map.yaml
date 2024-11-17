@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nextcloud-db
+data:
+  postgresql.conf: |
+    listen_addresses='*'

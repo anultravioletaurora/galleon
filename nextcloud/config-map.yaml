@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nextcloud
+data:
+  admin: "valentina"
+  admin_name: "Valentina Tereshkova"
+  db_name: "nextcloud"
+  db_user: "nextcloud"
+  db_host: "10.43.1.61:5432"
+  redis_host: "10.43.1.61"
