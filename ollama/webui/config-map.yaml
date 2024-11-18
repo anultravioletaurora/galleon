@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: open-webui
 data:
-  enable_oauth_signup: true
-  oauth_merge_accounts_by_email: true
+  enable_oauth_signup: "true"
+  oauth_merge_accounts_by_email: "true"
   oauth_provider_name: "Authentik"
   oauth_scopes: 'openid email profile'
