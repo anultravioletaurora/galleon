@@ -23,6 +23,7 @@ spec:
         app.kubernetes.io/instance: open-webui
     spec:
       runtimeClassName: nvidia
+      hostNetwork: true # https://github.com/open-webui/open-webui#open-webui-server-connection-error
       containers:
         - name: open-webui
           image: ghcr.io/open-webui/open-webui:cuda
