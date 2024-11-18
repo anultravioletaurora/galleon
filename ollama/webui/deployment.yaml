@@ -59,7 +59,7 @@ spec:
                   key: oauth_client_id
             - name: OAUTH_CLIENT_SECRET
               valueFrom: 
-                secretKeyRef::
+                secretKeyRef:
                   name: open-webui
                   key: oauth_client_secret
             - name: OAUTH_SCOPES
