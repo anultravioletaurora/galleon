@@ -31,7 +31,7 @@ spec:
             - containerPort: 8080
           env:
             - name: OLLAMA_BASE_URL
-              value: "10.43.1.81:11434"
+              value: "http://10.43.1.81:11434"
             - name: ENABLE_OAUTH_SIGNUP
               valueFrom: 
                 configMapKeyRef:
@@ -79,7 +79,6 @@ spec:
           resources:
             limits:
               nvidia.com/gpu: '1'
-
       volumes:
         - name: ollama
           persistentVolumeClaim:
