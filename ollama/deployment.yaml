@@ -27,7 +27,7 @@ spec:
         - name: ollama
           securityContext:
             privileged: true
-          image: ollama/ollama:0.3.12
+          image: ollama/ollama:0.3.0 # https://github.com/open-webui/open-webui/discussions/3634
           ports:
             - containerPort: 11434
           env:
