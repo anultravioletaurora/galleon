@@ -32,6 +32,11 @@ spec:
           env:
             - name: OLLAMA_BASE_URL
               value: "http://10.43.1.81:11434"
+            - name: ENABLE_SIGNUP
+              valueFrom:
+                configMapKeyRef:
+                  name: open-webui
+                  key: enable_signup
             - name: ENABLE_OAUTH_SIGNUP
               valueFrom: 
                 configMapKeyRef:
