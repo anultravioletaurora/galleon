@@ -1,4 +1,4 @@
-##### Red Discord Bot
+## Red Discord Bot
 
 ### Required Secrets
 | Secret | Key | Description |
