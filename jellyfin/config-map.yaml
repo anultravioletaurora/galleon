@@ -6,5 +6,5 @@ data:
   zap2it-filename: "xmltv.xml"
   zap2it-optargs: "-I -D -a"
   jellysearch-cron: "0 0 0/2 ? * * *"
-  meili-url: "http://localhost:7700"
-  jellyfin_local_url: "http://localhost:8096"
+  meili-url: "http://10.43.11.216:7700"
+  jellyfin_local_url: "http://10.43.11.216:8096"

@@ -10,3 +10,14 @@ spec:
       storage: 100Gi
   storageClassName: "harvester"
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jellyfin-meili
+spec:
+  accessModes:
+    - ReadWriteOnce 
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: "harvester"

@@ -13,6 +13,10 @@ spec:
       targetPort: 8096
       protocol: TCP
       name: http
+    - port: 7700
+      targetPort: 7700
+      protocol: TCP
+      name: meilisearch
     - port: 5000
       targetPort: 5000
       protocol: TCP

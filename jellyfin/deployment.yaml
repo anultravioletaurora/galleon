@@ -120,7 +120,7 @@ spec:
           ports:
             - containerPort: 7700
           volumeMounts:
-            - name: config
+            - name: meili
               mountPath: "/meili_data"
               subPath: "meilisearch"
           env:
@@ -142,6 +142,9 @@ spec:
         - name: zap2it
           persistentVolumeClaim:
             claimName: zap2it 
+        - name: meili
+          persistentVolumeClaim:
+            claimName: jellyfin-meili
         - name: movies
           nfs:
             server: unraid.cosmonautical.cloud
