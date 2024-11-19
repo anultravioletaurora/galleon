@@ -13,6 +13,10 @@ spec:
       targetPort: 8096
       protocol: TCP
       name: http
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+      name: jellysearch
   selector:
     app.kubernetes.io/name: jellyfin
     app.kubernetes.io/instance: jellyfin
