@@ -23,15 +23,20 @@ spec:
         app.kubernetes.io/instance: open-webui
     spec:
       runtimeClassName: nvidia
-      hostNetwork: true # https://github.com/open-webui/open-webui#open-webui-server-connection-error
       containers:
         - name: open-webui
-          image: ghcr.io/open-webui/open-webui:cuda
+          securityContext:
+            privileged: true
+          image: ghcr.io/open-webui/open-webui:ollama # https://github.com/open-webui/open-webui/discussions/3634
           ports:
             - containerPort: 8080
           env:
-            - name: OLLAMA_BASE_URL
-              value: "http://10.43.1.81:11434"
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: all
+            - name: NVIDIA_DRIVER_CAPABILITIES
+              value: all
+            - name: OLLAMA_DEBUG
+              value: "1"
             - name: ENABLE_SIGNUP
               valueFrom:
                 configMapKeyRef:
@@ -78,9 +83,13 @@ spec:
                   name: open-webui
                   key: openid_redirect_uri
           volumeMounts:
+            - mountPath: "/root/.ollama"
+              name: ollama
+              subPath: "ollama"
             - mountPath: "/app/backend/data"
               name: ollama
               subPath: "open-webui"
+
           resources:
             limits:
               nvidia.com/gpu: '1'
