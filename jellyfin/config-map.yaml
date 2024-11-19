@@ -7,3 +7,4 @@ data:
   zap2it-optargs: "-I -D -a"
   jellysearch-cron: "0 0 0/2 ? * * *"
   meili-url: "http://localhost:7700"
+  jellyfin_local_url: "http://localhost:8096"
