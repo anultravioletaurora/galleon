@@ -6,3 +6,4 @@ data:
   zap2it-filename: "xmltv.xml"
   zap2it-optargs: "-I -D -a"
   jellysearch-cron: "0 0 0/2 ? * * *"
+  meili-url: "http://localhost:7700"
