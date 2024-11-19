@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: open-webui
+  labels:
+    app.kubernetes.io/name: open-webui
+    app.kubernetes.io/instance: open-webui
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1                 # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # < New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: open-webui
+      app.kubernetes.io/instance: open-webui
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: open-webui
+        app.kubernetes.io/instance: open-webui
+    spec:
+      runtimeClassName: nvidia
+      containers:
+        - name: open-webui
+          securityContext:
+            privileged: true
+          image: ghcr.io/open-webui/open-webui:dev-ollama # https://github.com/open-webui/open-webui/discussions/3634
+          ports:
+            - containerPort: 8080
+          env:
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: all
+            - name: NVIDIA_DRIVER_CAPABILITIES
+              value: all
+            - name: OLLAMA_DEBUG
+              value: "1"
+            - name: ENABLE_SIGNUP
+              valueFrom:
+                configMapKeyRef:
+                  name: open-webui
+                  key: enable_signup
+            - name: ENABLE_OAUTH_SIGNUP
+              valueFrom: 
+                configMapKeyRef:
+                  name: open-webui
+                  key: enable_oauth_signup 
+            - name: OAUTH_MERGE_ACCOUNTS_BY_EMAIL
+              valueFrom: 
+                configMapKeyRef:
+                  name: open-webui
+                  key: oauth_merge_accounts_by_email
+            - name: OAUTH_PROVIDER_NAME
+              valueFrom: 
+                configMapKeyRef:
+                  name: open-webui
+                  key: oauth_provider_name
+            - name: OPENID_PROVIDER_URL
+              valueFrom: 
+                secretKeyRef:
+                  name: open-webui
+                  key: openid_provider_url
+            - name: OAUTH_CLIENT_ID
+              valueFrom: 
+                secretKeyRef:
+                  name: open-webui
+                  key: oauth_client_id
+            - name: OAUTH_CLIENT_SECRET
+              valueFrom: 
+                secretKeyRef:
+                  name: open-webui
+                  key: oauth_client_secret
+            - name: OAUTH_SCOPES
+              valueFrom: 
+                configMapKeyRef:
+                  name: open-webui
+                  key: oauth_scopes
+            - name: OPENID_REDIRECT_URI
+              valueFrom: 
+                secretKeyRef:
+                  name: open-webui
+                  key: openid_redirect_uri
+          volumeMounts:
+            - mountPath: "/root/.ollama"
+              name: ollama
+              subPath: "ollama"
+            - mountPath: "/app/backend/data"
+              name: ollama
+              subPath: "open-webui"
+
+          resources:
+            limits:
+              nvidia.com/gpu: '1'
+      volumes:
+        - name: ollama
+          persistentVolumeClaim:
+            claimName: ollama
+---
