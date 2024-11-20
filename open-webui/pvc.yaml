@@ -7,6 +7,6 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 100Gi
-  storageClassName: nfs  
+      storage: 30Gi
+  storageClassName: harvester 
 ---
