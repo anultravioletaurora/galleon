@@ -27,7 +27,7 @@ spec:
         - name: open-webui
           securityContext:
             privileged: true
-          image: ghcr.io/open-webui/open-webui:ollama # https://github.com/open-webui/open-webui/discussions/3634
+          image: ghcr.io/open-webui/open-webui:0.4.0-ollama
           ports:
             - containerPort: 8080
           env:
