@@ -4,9 +4,9 @@ metadata:
   name: ollama
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 100Gi
-  storageClassName: nfs  
+      storage: 30Gi
+  storageClassName: harvester 
 ---
