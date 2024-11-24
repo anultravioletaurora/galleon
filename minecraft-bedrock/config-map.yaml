@@ -18,6 +18,7 @@ data:
       {
         "pack_id": "1113588c-f11e-4262-8928-e3fd7e9d0596",
         "version": [1, 0, 25]
+      }
     ]
   world_resource_packs.json: |
     [
