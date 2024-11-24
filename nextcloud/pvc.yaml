@@ -8,9 +8,9 @@ metadata:
     app.kubernetes.io/instance: nextcloud
 spec:
   accessModes:
-    - "ReadWriteMany"
+    - "ReadWriteOnce"
   resources:
     requests:
       storage: "40Gi"
-  storageClassName: nfs
+  storageClassName: harvester
 ---
