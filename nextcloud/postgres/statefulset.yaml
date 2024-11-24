@@ -49,7 +49,7 @@ spec:
                   - "cp /tmp/postgresql.conf /var/lib/postgresql/data"
 
           volumeMounts: 
-            - name: nextcloud
+            - name: nextcloud-db
               mountPath: "/var/lib/postgresql/data"
               subPath: postgres
             - name: nextcloud-db-cm
@@ -60,9 +60,9 @@ spec:
           ports: 
             - containerPort: 6379
       volumes:
-      - name: nextcloud
+      - name: nextcloud-db
         persistentVolumeClaim:
-          claimName: nextcloud
+          claimName: nextcloud-db
       - name: nextcloud-db-cm
         configMap:
           name: nextcloud-db
