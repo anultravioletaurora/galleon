@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: minecraft-bedrock-cm
 data:
-  allowlist_users: "violetaurora180:2535473272563464"
+  allowlist_users: "violetaurora180:2535473272563464,daddysmooth2398:2535440600212139"
   version: "LATEST"
   server_name: "Cosmonautical"
   gamemode: "survival"
