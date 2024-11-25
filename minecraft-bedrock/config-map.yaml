@@ -14,6 +14,10 @@ data:
       {
         "pack_id": "40d18d86-f454-4361-bbcf-b118274dec17",
         "version": [1, 2, 6]
+      },
+      {
+        "pack_id": "1113588c-f11e-4262-8928-e3fd7e9d0596",
+        "version": [1, 0, 25]
       }
     ]
   world_resource_packs.json: |
@@ -21,6 +25,14 @@ data:
       {
         "pack_id": "e0992d5f-e7d3-4260-abba-2da0d6015c05",
         "version": [1, 2, 6]
+      },
+      {
+        "pack_id": "9e81fb56-2d69-4d63-9dbe-cb0626c383da",
+        "version": [2, 0, 0]
+      },
+      { 
+        "pack_id": "e14cf1f1-12b1-4b77-93cc-ba732064c81c",
+        "version: [1, 0, 25]
       }
     ]
     
