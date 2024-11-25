@@ -77,12 +77,12 @@ spec:
                   
           resources:
             limits:
-              cpu: 6
-              memory: "12Gi"
+              cpu: 4
+              memory: "10Gi"
               nvidia.com/gpu: "1" 
             requests:
-              cpu: 6
-              memory: "12Gi" 
+              cpu: 4
+              memory: "10Gi" 
               nvidia.com/gpu: "1"
 
         - name: jellysearch
