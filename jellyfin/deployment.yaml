@@ -80,11 +80,11 @@ spec:
           resources:
             limits:
               cpu: 4
-              memory: "10Gi"
+              memory: "14Gi"
               nvidia.com/gpu: "1" 
             requests:
               cpu: 4
-              memory: "10Gi" 
+              memory: "14Gi" 
               nvidia.com/gpu: "1"
 
         - name: jellysearch
