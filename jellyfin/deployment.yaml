@@ -140,7 +140,7 @@ spec:
         - name: tmp
           hostPath:
             path: "/tmp"
-            type: directory
+            type: Directory
         - name: zap2it
           persistentVolumeClaim:
             claimName: zap2it 
