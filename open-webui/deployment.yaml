@@ -92,8 +92,8 @@ spec:
               subPath: "open-webui"
 
           resources:
-            limits:
-              nvidia.com/gpu: '1'
+            requests:
+              nvidia.com/gpu: '6'
       volumes:
         - name: ollama
           persistentVolumeClaim:
