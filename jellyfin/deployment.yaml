@@ -138,8 +138,9 @@ spec:
           persistentVolumeClaim:
             claimName: jellyfin
         - name: tmp
-          persistentVolumeClaim:
-            claimName: jellyfin-tmp
+          hostPath:
+            path: "/tmp"
+            type: directory
         - name: zap2it
           persistentVolumeClaim:
             claimName: zap2it 
