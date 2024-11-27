@@ -79,12 +79,12 @@ spec:
                   
           resources:
             limits:
-              cpu: 6
-              memory: "12Gi"
+              cpu: 4
+              memory: "10Gi"
               nvidia.com/gpu: "1" 
             requests:
-              cpu: 6
-              memory: "12Gi" 
+              cpu: 4
+              memory: "10Gi" 
               nvidia.com/gpu: "1"
 
         - name: jellysearch
@@ -132,11 +132,7 @@ spec:
                   name: jellyfin
                   key: meili-key
 
-      tolerations:
-        - key: "gpu"
-          operator: "Equal"
-          value: "true"
-          effect: "PreferNoSchedule"
+   
       volumes:
         - name: config
           persistentVolumeClaim:

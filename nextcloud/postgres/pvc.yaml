@@ -2,15 +2,15 @@
 apiVersion: "v1"
 kind: "PersistentVolumeClaim"
 metadata:
-  name: nextcloud
+  name: nextcloud-db
   labels:
-    app.kubernetes.io/name: nextcloud
-    app.kubernetes.io/instance: nextcloud
+    app.kubernetes.io/name: nextcloud-db
+    app.kubernetes.io/instance: nextcloud-db
 spec:
   accessModes:
     - "ReadWriteOnce"
   resources:
     requests:
-      storage: "40Gi"
+      storage: "8Gi"
   storageClassName: harvester
 ---
