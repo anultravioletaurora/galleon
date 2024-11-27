@@ -94,6 +94,8 @@ spec:
           resources:
             requests:
               nvidia.com/gpu: '6'
+            limits:
+              nvidia.com/gpu: '6'
       volumes:
         - name: ollama
           persistentVolumeClaim:
