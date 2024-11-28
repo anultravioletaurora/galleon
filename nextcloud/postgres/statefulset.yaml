@@ -52,9 +52,6 @@ spec:
             - name: nextcloud-db
               mountPath: "/var/lib/postgresql/data"
               subPath: postgres
-            - name: nextcloud-db-cm
-              mountPath: "/tmp/postgresql.conf"
-              subPath: postgresql.conf
         - name: redis
           image: redis:7.4.0
           ports: 
