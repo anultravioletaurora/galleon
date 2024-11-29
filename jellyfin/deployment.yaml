@@ -81,11 +81,11 @@ spec:
             limits:
               cpu: 4
               memory: "14Gi"
-              nvidia.com/gpu: "1" 
+              nvidia.com/gpu: "2" 
             requests:
               cpu: 4
               memory: "14Gi" 
-              nvidia.com/gpu: "1"
+              nvidia.com/gpu: "2"
 
         - name: jellysearch
           image: domistyle/jellysearch
@@ -138,7 +138,8 @@ spec:
           persistentVolumeClaim:
             claimName: jellyfin
         - name: tmp
-          emptyDir: {}
+          emptyDir:
+            medium: Memory
         - name: zap2it
           persistentVolumeClaim:
             claimName: zap2it 
