@@ -137,6 +137,33 @@ spec:
               name: nextcloud-data
               subPath: userdata
           
+        - name: cron
+          image: nextcloud:29.0.6
+          command: ["/cron.sh"]
+          
+          # Update crontab on startup
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - "sh"
+                  - "-c"
+                  - "echo '*/5 * * * * php /var/www/nextcloud/occ preview:pre-generate' >> /var/spool/cron/crontabs/www-data"
+          resources:
+            requests:
+              cpu: 250m
+              memory: 500MiB
+            limits:
+              cpu: 500m
+              memory: 1Gi
+              
+          volumeMounts:
+            - mountPath: "/var/www/html"
+              name: nextcloud
+              subPath: app
+            - mountPath: "/var/www/html/data"
+              name: nextcloud-data
+              subPath: userdata
           # Install dependencies for SMB
           # lifecycle:
           #   postStart:
