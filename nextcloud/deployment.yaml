@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nextcloud
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     rollingUpdate:
       maxSurge: 1                 # < The number of pods that can be created above the desired amount of pods during an update
@@ -156,7 +156,7 @@ spec:
             limits:
               cpu: 500m
               memory: 1Gi
-              
+
           volumeMounts:
             - mountPath: "/var/www/html"
               name: nextcloud
