@@ -129,6 +129,12 @@ spec:
               cpu: "2"
               memory: "4Gi"
 
+          livenessProbe:
+            exec:
+              command:
+                - cat
+                - /var/www/html/data/.ocdata
+
           volumeMounts:
             - mountPath: "/var/www/html"
               name: nextcloud
