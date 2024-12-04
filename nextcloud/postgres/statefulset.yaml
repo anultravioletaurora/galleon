@@ -3,6 +3,7 @@ kind: StatefulSet
 metadata:
   name: nextcloud-db
 spec:
+  serviceName: nextcloud-db
   strategy:
     rollingUpdate:
       maxSurge: 1                 # The number of pods that can be created above the desired amount of pods during an update
@@ -40,21 +41,10 @@ spec:
                 configMapKeyRef:
                   name: nextcloud
                   key: db_name
-          lifecycle:
-            postStart:
-              exec:
-                command: 
-                  - "/bin/sh"
-                  - "-c"
-                  - "cp /tmp/postgresql.conf /var/lib/postgresql/data"
-
           volumeMounts: 
             - name: nextcloud-db
               mountPath: "/var/lib/postgresql/data"
               subPath: postgres
-            - name: nextcloud-db-cm
-              mountPath: "/tmp/postgresql.conf"
-              subPath: postgresql.conf
         - name: redis
           image: redis:7.4.0
           ports: 

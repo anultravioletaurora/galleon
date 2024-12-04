@@ -27,7 +27,7 @@ spec:
         - name: open-webui
           securityContext:
             privileged: true
-          image: ghcr.io/open-webui/open-webui:0.4.4-ollama
+          image: ghcr.io/open-webui/open-webui:0.4.6-ollama
           ports:
             - containerPort: 8080
             - containerPort: 11434 # Expose Ollama for Home Assistant
@@ -92,8 +92,10 @@ spec:
               subPath: "open-webui"
 
           resources:
+            requests:
+              nvidia.com/gpu: '6'
             limits:
-              nvidia.com/gpu: '1'
+              nvidia.com/gpu: '6'
       volumes:
         - name: ollama
           persistentVolumeClaim:

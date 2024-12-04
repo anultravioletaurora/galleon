@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nextcloud
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     rollingUpdate:
       maxSurge: 1                 # < The number of pods that can be created above the desired amount of pods during an update
@@ -129,6 +129,12 @@ spec:
               cpu: "2"
               memory: "4Gi"
 
+          livenessProbe:
+            exec:
+              command:
+                - cat
+                - /var/www/html/data/.ocdata
+
           volumeMounts:
             - mountPath: "/var/www/html"
               name: nextcloud
@@ -137,6 +143,33 @@ spec:
               name: nextcloud-data
               subPath: userdata
           
+        - name: cron
+          image: nextcloud:29.0.6
+          command: ["/cron.sh"]
+          
+          # Update crontab on startup
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - "sh"
+                  - "-c"
+                  - "echo '*/5 * * * * php /var/www/nextcloud/occ preview:pre-generate' >> /var/spool/cron/crontabs/www-data"
+          resources:
+            requests:
+              cpu: 250m
+              memory: 500Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
+
+          volumeMounts:
+            - mountPath: "/var/www/html"
+              name: nextcloud
+              subPath: app
+            - mountPath: "/var/www/html/data"
+              name: nextcloud-data
+              subPath: userdata
           # Install dependencies for SMB
           # lifecycle:
           #   postStart:

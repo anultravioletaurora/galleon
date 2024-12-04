@@ -44,6 +44,8 @@ spec:
           volumeMounts:
             - name: config
               mountPath: "/config"
+            - name: tmp
+              mountPath: "/tmp"
             - name: zap2it
               mountPath: /media/xmltv 
             - name: tvshows
@@ -78,12 +80,12 @@ spec:
           resources:
             limits:
               cpu: 4
-              memory: "10Gi"
-              nvidia.com/gpu: "1" 
+              memory: "14Gi"
+              nvidia.com/gpu: "2" 
             requests:
               cpu: 4
-              memory: "10Gi" 
-              nvidia.com/gpu: "1"
+              memory: "14Gi" 
+              nvidia.com/gpu: "2"
 
         - name: jellysearch
           image: domistyle/jellysearch
@@ -135,6 +137,9 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: jellyfin
+        - name: tmp
+          emptyDir:
+            medium: Memory
         - name: zap2it
           persistentVolumeClaim:
             claimName: zap2it 
