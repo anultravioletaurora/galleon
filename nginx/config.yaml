@@ -5,6 +5,7 @@ metadata:
 spec:
   valuesContent: |-
     controller:
+      allowSnippetAnnotations: true
       publishService:
         enabled: true
       service:
