@@ -1,0 +1,48 @@
+defaultNamespace: cosmonautical
+
+helm:
+  chart: git::https://github.com/owncloud/ocis-charts/tree/main/charts/ocis
+  values:
+    services:
+      nats:
+        persistence:
+          enabled: true
+          storageClassName: harvester
+      ocm:
+        persistence:
+          enabled: true
+          storageClassName: harvester
+      search:
+        persistence:
+          enabled: true
+          storageClassName: harvester
+      storagesystem:
+        persistence:
+          enabled: true
+          storageClassName: nfs
+      storageusers:
+        storageBackend:
+          driver: ocis
+        persistence:
+          enabled: true
+          storageClassName: nfs
+          size: 100Gi
+      thumbnails:
+        persistence:
+          enabled: true
+          storageClassName: nfs
+        maintenance:
+          cleanUpOldThumbnails:
+            enabled: true  
+  valuesFrom:
+    # I have my domains and non-sensitive configuration in a private repo
+    - configMapKeyRef:
+        name: owncloud-infinite-scale
+        namespace: cosmonautical
+        key: values.yaml
+
+    # I have my extra sensitive configuration in secrets
+    # - secretKeyRef:
+    #     name: owncloud-infinite-scale
+    #     namespace: cosmonautical
+    #     key: values.yaml
