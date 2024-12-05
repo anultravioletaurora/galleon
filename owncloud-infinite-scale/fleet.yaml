@@ -1,7 +1,7 @@
 defaultNamespace: cosmonautical
 
 helm:
-  chart: git::http://github.com/owncloud/ocis-charts/
+  chart: git::http://github.com/owncloud/ocis-charts/charts/ocis
   values:
     services:
       nats:
