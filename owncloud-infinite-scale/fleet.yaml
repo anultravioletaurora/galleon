@@ -40,9 +40,3 @@ helm:
         name: owncloud-infinite-scale
         namespace: cosmonautical
         key: values.yaml
-
-    # I have my extra sensitive configuration in secrets
-    # - secretKeyRef:
-    #     name: owncloud-infinite-scale
-    #     namespace: cosmonautical
-    #     key: values.yaml
