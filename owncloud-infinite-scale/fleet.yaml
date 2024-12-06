@@ -1,5 +1,4 @@
 defaultNamespace: cosmonautical
-
 helm:
   chart: "git::https://github.com/owncloud/ocis-charts.git//charts/ocis/"
   values:
@@ -34,9 +33,14 @@ helm:
         maintenance:
           cleanUpOldThumbnails:
             enabled: true  
+    secretRefs:
+      notificationsSmtpSecretRef: "smtp"
+      ldapSecretRef: "ldap-bind-secrets"
+      jwtSecretRef: "jwt-secret"
   valuesFrom:
     # I have my domains and non-sensitive configuration in a private repo
     - configMapKeyRef:
         name: owncloud-infinite-scale
         namespace: cosmonautical
         key: values.yaml
+paused: false
