@@ -25,7 +25,7 @@ helm:
         persistence:
           enabled: true
           storageClassName: nfs
-          size: 1Ti
+          size: 100Gi
       thumbnails:
         persistence:
           enabled: true
