@@ -10,13 +10,9 @@ helm:
         cpu: 200m
         memory: 250Mi
     cache:
-      type: "redis-sentinel"
-      nodes:
-        - "galleon-redis.cosmonautical:6379"
+      type: "memory"
     store:
-      type: "redis-sentinel"
-      nodes:
-        - "galleon-redis.cosmonautical:6379"
+      type: "memory"
     services:
       nats:
         persistence:
