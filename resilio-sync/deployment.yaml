@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resilio-sync
+  labels:
+    app.kubernetes.io/name: resilio-sync
+    app.kubernetes.io/instance: resilio-sync
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1                 # < The number of pods that can be created above the desired amount of pods during an update
+      maxUnavailable: 1           # < The number of pods that can be unavailable during the update process
+    type: RollingUpdate           # < New pods are added gradually, and old pods are terminated gradually
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: resilio-sync
+      app.kubernetes.io/instance: resilio-sync
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: resilio-sync
+        app.kubernetes.io/instance: resilio-sync
+    spec:
+      containers:
+        - name: resilio-sync
+          image: resilio/sync:2.8.1
+          ports: 
+            - containerPort: 8888
+            - containerPort: 55555
+          env: 
+            - name: EULA
+              value: "true"
+          resources:
+            requests:
+              cpu: 500m
+              memory: 2Gi
+            limits:
+              cpu: 1
+              memory: 4Gi
+          volumeMounts:
+            - name: resilio-sync
+              mountPath: "/mnt/sync"
+              subPath: "data"
+      volumes:
+        - name: resilio-sync
+          persistentVolumeClaim:
+            claimName: resilio-sync
+

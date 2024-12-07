@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: resilio-sync
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8888
+      targetPort: 8888
+      protocol: TCP
+      name: web
+    - port: 55555
+      targetPort: 55555
+      protocol: TCP
+      name: p2p
+  selector:
+    app.kubernetes.io/name: resilio-sync
+    app.kubernetes.io/instance: resilio-sync
