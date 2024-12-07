@@ -10,3 +10,14 @@ spec:
       storage: 2Gi
   storageClassName: harvester  
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: roms
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 200Gi
+  storageClassName: nfs  
