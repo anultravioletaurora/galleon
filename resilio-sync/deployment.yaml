@@ -41,8 +41,15 @@ spec:
             - name: resilio-sync
               mountPath: "/mnt/sync"
               subPath: "data"
+            - name: roms
+              mountPath: "/mnt/roms"
       volumes:
         - name: resilio-sync
           persistentVolumeClaim:
             claimName: resilio-sync
+        - name: roms
+          nfs:
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/roms
+
 
