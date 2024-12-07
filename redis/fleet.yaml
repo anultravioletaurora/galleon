@@ -1,6 +1,6 @@
 defaultNamespace: cosmonautical
 helm:
-  chart: bitnami/redis
+  chart: redis
   repo: https://charts.bitnami.com/bitnami
   values:
     replica:
