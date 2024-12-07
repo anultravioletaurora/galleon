@@ -2,6 +2,17 @@ defaultNamespace: cosmonautical
 helm:
   chart: "git::https://github.com/owncloud/ocis-charts.git//charts/ocis/"
   values:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 2Gi
+      requests:
+        cpu: 250m
+        memory: 1Gi
+    cache:
+      type: "memory"
+    store:
+      type: "memory"
     services:
       nats:
         persistence:
@@ -43,4 +54,4 @@ helm:
         name: owncloud-infinite-scale
         namespace: cosmonautical
         key: values.yaml
-paused: true
+paused: false
