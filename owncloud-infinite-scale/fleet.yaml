@@ -10,9 +10,9 @@ helm:
         cpu: 200m
         memory: 500Mi
     cache:
-      type: "memory"
+      type: "redis-sentinel"
     store:
-      type: "memory"
+      type: "redis-sentinel"
     services:
       nats:
         persistence:
