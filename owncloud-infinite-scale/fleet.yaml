@@ -13,6 +13,22 @@ helm:
       type: "memory"
     store:
       type: "memory"
+    features:
+      externalUserManagement:
+        enabled: true
+        oidc:
+          accessTokenVerifyMethod: "none"
+          userIDClaim: "preferred_username"
+          userIDClaimAttributeMapping: "username"
+          roleAssignment:
+            enabled: true
+            claim: groups
+        ldap:
+          user:
+            schema:
+              id: uid
+              userName: cn
+            objectClass: user
     services:
       nats:
         persistence:
