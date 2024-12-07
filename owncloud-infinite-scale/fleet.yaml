@@ -5,10 +5,10 @@ helm:
     resources:
       limits:
         cpu: 500m
-        memory: 1Gi
+        memory: 500Mi
       requests:
         cpu: 200m
-        memory: 500Mi
+        memory: 250Mi
     cache:
       type: "memory"
     store:
