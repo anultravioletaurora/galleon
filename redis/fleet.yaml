@@ -2,7 +2,6 @@ defaultNamespace: cosmonautical
 helm:
   chart: "redis"
   repo: "https://charts.bitnami.com/bitnami"
-  version: 20.4.0
   values:
     replica:
       replicaCount: 3
