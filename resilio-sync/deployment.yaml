@@ -42,7 +42,7 @@ spec:
               mountPath: "/mnt/sync"
               subPath: "data"
             - name: roms
-              mountPath: "/mnt/roms"
+              mountPath: "/mnt/sync/roms"
       volumes:
         - name: resilio-sync
           persistentVolumeClaim:
