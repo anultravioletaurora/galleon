@@ -21,6 +21,17 @@ spec:
         app.kubernetes.io/name: resilio-sync
         app.kubernetes.io/instance: resilio-sync
     spec:
+      initContainers:
+        - name: init
+          image: busybox
+          command:
+            - sh
+            - -c
+          args:
+            - chown -R rslsync:rslsync /mnt/*;
+          volumeMounts:
+            - name: roms
+              mountPath: "/mnt/roms"
       containers:
         - name: resilio-sync
           image: resilio/sync:2.8.1
@@ -42,7 +53,7 @@ spec:
               mountPath: "/mnt/sync"
               subPath: "data"
             - name: roms
-              mountPath: "/mnt/sync/roms"
+              mountPath: "/mnt/roms"
       volumes:
         - name: resilio-sync
           persistentVolumeClaim:
