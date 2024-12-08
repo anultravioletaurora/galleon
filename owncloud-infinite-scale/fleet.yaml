@@ -60,6 +60,10 @@ helm:
         maintenance:
           cleanUpOldThumbnails:
             enabled: true  
+      web:
+        config:
+          oidc:
+            webClientScope: "openid profile email offline_access"
     secretRefs:
       notificationsSmtpSecretRef: "smtp"
       ldapSecretRef: "ldap-bind-secrets"
