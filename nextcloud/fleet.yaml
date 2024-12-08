@@ -35,7 +35,7 @@ helm:
     redis:
       enabled: true
       global:
-        storageClass: nfs
+        storageClass: harvester
     mail: 
       enabled: true
     cronjob:
