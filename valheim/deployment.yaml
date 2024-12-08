@@ -50,7 +50,7 @@ spec:
             - name: "SERVER_PASS"
               valueFrom:
                 secretKeyRef:
-                  name: valheim-secrets
+                  name: valheim
                   key: server_password
             - name: "PUID"
               value: "1000"
