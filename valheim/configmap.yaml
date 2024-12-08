@@ -9,6 +9,12 @@ data:
     # echo "Loading $VALHEIM_ASSEMBLY from /config"
     # cp -v /config/$VALHEIM_ASSEMBLY /opt/valheim/server/valheim_server_Data/Managed
 
+    wget -nv https://download.owncloud.com/desktop/ownCloud/stable/latest/linux/Debian_12/Release.key -O - | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/owncloud-client.gpg > /dev/null;
+
+    apt update && apt install apt-transport-https -y;
+
+    echo 'deb https://download.owncloud.com/desktop/ownCloud/stable/latest/linux/Debian_12/ /' | sudo tee -a /etc/apt/sources.list.d/owncloud-client.list;
+
     apt update && apt install owncloud-client -y && echo "Installed Owncloud Client";
 
   CharacterTemplate.yml: |
