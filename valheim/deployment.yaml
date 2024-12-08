@@ -42,6 +42,8 @@ spec:
                 configMapKeyRef:
                   key: server_name
                   name: valheim-cm
+            - name: PRE_START_HOOK
+              value: "/config/prestart.sh"                
             - name: WORLD_NAME
               valueFrom:
                 configMapKeyRef:
