@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: valheim
   annotations:
-    metallb.universe.tf/loadBalancerIPs: 10.10.88.82
+    cloudprovider.harvesterhci.io/ipam: dhcp
   labels:
     app.kubernetes.io/name: valheim
     app.kubernetes.io/instance: valheim
