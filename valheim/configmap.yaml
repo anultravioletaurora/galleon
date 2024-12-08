@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: valheim-cm
+data:
+  prestart.sh: |
+    #!/bin/bash
+    # VALHEIM_ASSEMBLY="assembly_valheim.dll"
+    # echo "Loading $VALHEIM_ASSEMBLY from /config"
+    # cp -v /config/$VALHEIM_ASSEMBLY /opt/valheim/server/valheim_server_Data/Managed
+
+    apt update && apt install owncloud-client -y && echo "Installed Owncloud Client";
+
+  CharacterTemplate.yml: |
+    items:
+      Wood: 50
+      Stone: 30
+      
+    skills:
+      Bows: 15
+      Run: 20
+
+  server_name: Cosmonautical
+  world_name: Urðarbrunnr
