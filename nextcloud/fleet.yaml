@@ -47,6 +47,8 @@ helm:
         limit: 
           cpu: 250m
           memory: 500Mi
+    phpClientHttpsFix:
+      enabled: true
   valuesFrom:
     # I have passwords and other sensitive data configured in a secret 
     - secretKeyRef:
