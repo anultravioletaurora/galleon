@@ -5,7 +5,7 @@ helm:
   values:
     nextcloud:
       phpConfigs: # These need to be prefixed with "zz"
-        zz_upload_limit.ini; |-
+        zz_upload_limit.ini: |-
           post_max_size=50G
           upload_max_filesize=50G
         zz_memory_limit.ini: |-
