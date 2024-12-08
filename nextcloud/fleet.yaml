@@ -1,0 +1,60 @@
+defaultNamespace: cosmonautical
+helm:
+  chart: "nextcloud"
+  repo: "https://nextcloud.github.io/helm/"
+  values:
+    image:
+      repository: nextcloud
+      flavor: fpm
+      tag: 30.0.3
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+    internalDatabase:
+      enabled: false
+    externalDatabase:
+      enabled: true
+      type: postgresql
+    postgresql: 
+      enabled: true
+      primary:
+        persistence: 
+          enabled: true
+    persistence:
+      enabled: true
+      storageClass: harvester
+      accessMode: ReadWriteOnce
+      size: 10Gi
+      nextcloudData:
+        enabled: true
+        storageClass: nfs
+        accessMode: ReadWriteMany
+        size: 100Gi
+    redis:
+      enabled: true
+      global:
+        storageClass: nfs
+    mail: 
+      enabled: true
+    cronjob:
+      enabled: true
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
+        limit: 
+          cpu: 250m
+          memory: 500Mi
+  valuesFrom:
+    # I have passwords and other sensitive data configured in a secret 
+    - secretKeyRef:
+        name: nextcloud
+        namespace: cosmonautical
+        key: values.yaml
+    # I have my domains and non-sensitive configuration in a private repo
+    - configMapKeyRef:
+        name: nextcloud
+        namespace: cosmonautical
+        key: values.yaml
