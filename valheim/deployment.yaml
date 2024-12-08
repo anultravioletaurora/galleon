@@ -64,7 +64,7 @@ spec:
               cpu: 2
               memory: 8Gi
           volumeMounts:
-            - name: gaming
+            - name: config
               mountPath: "/config"
               subPath: "valheim"
             - name: data
