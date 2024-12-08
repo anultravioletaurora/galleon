@@ -17,7 +17,7 @@ helm:
       externalUserManagement:
         enabled: true
         oidc:
-          accessTokenVerifyMethod: "none"
+          accessTokenVerifyMethod: "jwt"
           userIDClaim: "preferred_username"
           userIDClaimAttributeMapping: "username"
           roleAssignment:
