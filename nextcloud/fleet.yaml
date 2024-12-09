@@ -4,7 +4,16 @@ helm:
   repo: "https://nextcloud.github.io/helm/"
   values:
     nextcloud:
+      extraVolumeMounts:
+        - name: uploads
+          mountPath: "/var/file_uploads"
+      extraVolumes:
+        - name: uploads
+          emptyDir: {}
       phpConfigs: # These need to be prefixed with "zz"
+        zz_upload_dir.ini: |-
+          output_buffering=0
+          upload_tmp_dir=/var/file_uploads
         zz_upload_limit.ini: |-
           post_max_size=50G
           upload_max_filesize=50G
