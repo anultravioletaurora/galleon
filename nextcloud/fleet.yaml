@@ -12,7 +12,7 @@ helm:
         - name: TRUSTED_PROXIES
           value: 10.0.0.0/8
         - name: APACHE_BODY_LIMIT
-          value: 0 # 0 is unlimited
+          value: "0" # 0 is unlimited
     image:
       repository: nextcloud
       flavor: apache
