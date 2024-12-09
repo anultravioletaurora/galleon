@@ -3,6 +3,13 @@ helm:
   chart: "nextcloud"
   repo: "https://nextcloud.github.io/helm/"
   values:
+    nextcloud:
+      phpConfigs: # These need to be prefixed with "zz"
+        zz_upload_limit.ini: |-
+          post_max_size=50G
+          upload_max_filesize=50G
+        zz_memory_limit.ini: |-
+          memory_limit=4096M
     image:
       repository: nextcloud
       flavor: fpm
@@ -12,6 +19,33 @@ helm:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        nginx.ingress.kubernetes.io/enable-cors: "true"
+        nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
+        nginx.ingress.kubernetes.io/server-snippet: |-
+          server_tokens off;
+          proxy_hide_header X-Powered-By;
+          rewrite ^/.well-known/webfinger /index.php/.well-known/webfinger last;
+          rewrite ^/.well-known/nodeinfo /index.php/.well-known/nodeinfo last;
+          rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+          rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
+          location = /.well-known/carddav {
+            return 301 $scheme://$host/remote.php/dav;
+          }
+          location = /.well-known/caldav {
+            return 301 $scheme://$host/remote.php/dav;
+          }
+          location = /robots.txt {
+            allow all;
+            log_not_found off;
+            access_log off;
+          }
+          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
+            deny all;
+          }
+          location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
+            deny all;
+          }
     internalDatabase:
       enabled: false
     externalDatabase:
@@ -48,7 +82,7 @@ helm:
           cpu: 250m
           memory: 500Mi
     phpClientHttpsFix:
-      enabled: true
+      enabled: true 
   valuesFrom:
     # I have passwords and other sensitive data configured in a secret 
     - secretKeyRef:
