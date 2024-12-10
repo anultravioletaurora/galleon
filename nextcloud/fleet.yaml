@@ -15,8 +15,10 @@ helm:
           value: "0" # 0 is unlimited
     image:
       repository: nextcloud
-      flavor: apache
+      flavor: fpm
       tag: 30.0.3
+    nginx:
+      enabled: false
     ingress:
       enabled: true
       className: nginx
