@@ -15,7 +15,7 @@ helm:
         - name: PHP_MEMORY_LIMIT
           value: 4G
         - name: PHP_UPLOAD_LIMIT
-          value: 50G 
+          value: 10G 
         - name: APACHE_UPLOAD_LIMIT
           value: 10G
         - name: TRUSTED_PROXIES
