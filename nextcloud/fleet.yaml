@@ -28,18 +28,13 @@ helm:
     nginx:
       enabled: true
       config:
-        default: false
-        custom: |-
-          server {
-            client_max_body_size 0;
-            client_body_buffer_size 250M;
-          }
+        default: true # Takes care of file upload sizes up to 10G
     ingress:
       enabled: true
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
-        nginx.ingress.kubernetes.io/proxy-body-size: "0" # 16G
+        nginx.ingress.kubernetes.io/proxy-body-size: "16384m" # 16G
         nginx.ingress.kubernetes.io/proxy-read-timeout: "3600" # 1 hour
         nginx.ingress.kubernetes.io/enable-cors: "true"
         nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
