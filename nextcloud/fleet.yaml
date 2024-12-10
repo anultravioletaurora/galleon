@@ -6,12 +6,9 @@ helm:
   values:
     nextcloud:
       phpConfigs: # These need to be prefixed with "zz"
-        zz_upload_dir.ini: |-
-          output_buffering=0
-          upload_tmp_dir=/var/file_uploads
         zz_upload_limit.ini: |-
-          post_max_size=50G
-          upload_max_filesize=50G
+          post_max_size=10G
+          upload_max_filesize=10G
         zz_memory_limit.ini: |-
           memory_limit=4096M
       extraEnv:
