@@ -20,14 +20,6 @@ helm:
           value: 10G
         - name: TRUSTED_PROXIES
           value: 10.0.0.0/8
-    image:
-      repository: nextcloud
-      # flavor: fpm
-      # tag: 30.0.3-fpm
-    nginx:
-      enabled: true
-      config:
-        default: true # Takes care of file upload sizes up to 10G
     ingress:
       enabled: true
       className: nginx
