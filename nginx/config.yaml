@@ -6,6 +6,8 @@ spec:
   valuesContent: |-
     controller:
       allowSnippetAnnotations: true
+      config:
+        proxy-body-size: "0"
       publishService:
         enabled: true
       service:
