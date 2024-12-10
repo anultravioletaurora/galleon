@@ -17,6 +17,7 @@ helm:
     image:
       repository: nextcloud
       flavor: fpm
+      tag: 30.0.3-fpm
     nginx:
       enabled: false
     ingress:
