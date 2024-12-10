@@ -30,7 +30,7 @@ helm:
       config:
         custom: |-
           server {
-            client_max_body_size 50000M;
+            client_max_body_size 0;
             client_body_buffer_size 250M;
           }
     ingress:
@@ -38,7 +38,7 @@ helm:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
-        nginx.ingress.kubernetes.io/proxy-body-size: "16G" # 16G
+        nginx.ingress.kubernetes.io/proxy-body-size: "0" # 16G
         nginx.ingress.kubernetes.io/proxy-max-temp-file-size: "16G" # 16G
         nginx.ingress.kubernetes.io/proxy-read-timeout: "3600" # 1 hour
         nginx.ingress.kubernetes.io/enable-cors: "true"
