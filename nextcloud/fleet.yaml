@@ -28,6 +28,7 @@ helm:
     nginx:
       enabled: true
       config:
+        default: false
         custom: |-
           server {
             client_max_body_size 0;
