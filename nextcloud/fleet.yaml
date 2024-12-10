@@ -29,7 +29,7 @@ helm:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
-        nginx.ingress.kubernetes.io/proxy-body-size: "10G"
+        nginx.ingress.kubernetes.io/proxy-body-size: "100000000000000000000000000000000000000000"
         nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
         nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
         nginx.ingress.kubernetes.io/enable-cors: "true"
