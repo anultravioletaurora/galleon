@@ -2,6 +2,7 @@ defaultNamespace: cosmonautical
 helm:
   chart: "nextcloud"
   repo: "https://nextcloud.github.io/helm/"
+  version: 6.3.0
   values:
     nextcloud:
       extraEnv:
@@ -16,7 +17,6 @@ helm:
     image:
       repository: nextcloud
       flavor: fpm
-      tag: 30.0.3
     nginx:
       enabled: false
     ingress:
