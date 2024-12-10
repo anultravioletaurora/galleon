@@ -29,7 +29,7 @@ helm:
       enabled: true
       config:
         custom: |-
-          location / {
+          server {
             client_max_body_size 50000M;
             client_body_buffer_size 250M;
           }
