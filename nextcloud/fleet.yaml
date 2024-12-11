@@ -7,17 +7,17 @@ helm:
     nextcloud:
       phpConfigs: # These need to be prefixed with "zz"
         zz_upload_limit.ini: |-
-          post_max_size=10G
-          upload_max_filesize=10G
+          post_max_size=20G
+          upload_max_filesize=20G
         zz_memory_limit.ini: |-
           memory_limit=4096M
       extraEnv:
         - name: PHP_MEMORY_LIMIT
           value: 4G
         - name: PHP_UPLOAD_LIMIT
-          value: 10G 
+          value: 20G 
         - name: APACHE_UPLOAD_LIMIT
-          value: 10G
+          value: 20G
         - name: TRUSTED_PROXIES
           value: 10.0.0.0/8
     image:
@@ -29,7 +29,9 @@ helm:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
-        nginx.ingress.kubernetes.io/proxy-body-size: 10G
+        nginx.ingress.kubernetes.io/proxy-body-size: 20G
+        nginx.ingress.kubernetes.io/proxy-send-timeout	: 1800
+nginx.ingress.kubernetes.io/proxy-read-timeout: 1800
         nginx.ingress.kubernetes.io/enable-cors: "true"
         nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
     internalDatabase:
