@@ -16,8 +16,11 @@ helm:
           value: 10.0.0.0/8
     image:
       repository: nextcloud
-      # flavor: fpm
-      tag: 30.0.3
+      flavor: fpm
+    nginx:
+      enabled: true
+      config:
+        default: true 
     ingress:
       enabled: true
       className: nginx
