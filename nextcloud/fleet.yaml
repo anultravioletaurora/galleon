@@ -17,7 +17,7 @@ helm:
         - name: PHP_UPLOAD_LIMIT
           value: 20G 
         - name: APACHE_UPLOAD_LIMIT
-          value: 20G
+          value: "0" # Unlimited
         - name: TRUSTED_PROXIES
           value: 10.0.0.0/8
     image:
