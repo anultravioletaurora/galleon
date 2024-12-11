@@ -9,7 +9,7 @@ helm:
         - name: PHP_MEMORY_LIMIT
           value: 4096M
         - name: PHP_UPLOAD_LIMIT
-          value: 2048M
+          value: 20000M
         - name: APACHE_BODY_LIMIT
           value: "0"
         - name: TRUSTED_PROXIES
@@ -22,7 +22,7 @@ helm:
       className: nginx
       annotations: 
         cert-manager.io/cluster-issuer: "letsencrypt"
-        nginx.ingress.kubernetes.io/proxy-body-size: "2048M"
+        nginx.ingress.kubernetes.io/proxy-body-size: "20000M"
         nginx.ingress.kubernetes.io/proxy-send-timeout: 3600
         nginx.ingress.kubernetes.io/proxy-read-timeout: 3600
         nginx.ingress.kubernetes.io/enable-cors: "true"
