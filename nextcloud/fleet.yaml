@@ -5,12 +5,6 @@ helm:
   version: 6.3.0
   values:
     nextcloud:
-      phpConfigs: # These need to be prefixed with "zz"
-        zz_upload_limit.ini: |-
-          post_max_size=20G
-          upload_max_filesize=20G
-        zz_memory_limit.ini: |-
-          memory_limit=4096M
       extraEnv:
         - name: PHP_MEMORY_LIMIT
           value: 4G
