@@ -7,7 +7,7 @@ helm:
     nextcloud:
       extraEnv:
         - name: PHP_MEMORY_LIMIT
-          value: 4096M
+          value: 8192M
         - name: PHP_UPLOAD_LIMIT
           value: 20000M
         - name: APACHE_BODY_LIMIT
