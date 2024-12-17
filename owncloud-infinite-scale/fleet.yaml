@@ -74,4 +74,4 @@ helm:
         name: owncloud-infinite-scale
         namespace: cosmonautical
         key: values.yaml
-paused: true
+paused: false
