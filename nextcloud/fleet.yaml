@@ -4,16 +4,23 @@ helm:
   repo: "https://nextcloud.github.io/helm/"
   version: 6.3.0
   values:
+    resources: 
+      requests: 
+        cpu: 2
+        memory: 8Gi
+      limits:
+        cpu: 2
+        memory: 8Gi
     nextcloud:
       phpConfigs: # These need to be prefixed with "zz"
         zz_upload_limit.ini: |-
           post_max_size=10G
           upload_max_filesize=10G
         zz_memory_limit.ini: |-
-          memory_limit=4096M
+          memory_limit=8192M
       extraEnv:
         - name: PHP_MEMORY_LIMIT
-          value: 4G
+          value: 8G
         - name: PHP_UPLOAD_LIMIT
           value: 10G 
         - name: APACHE_UPLOAD_LIMIT
@@ -29,9 +36,9 @@ helm:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
-        nginx.ingress.kubernetes.io/proxy-body-size: "10000M"
-        nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
-        nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+        nginx.ingress.kubernetes.io/proxy-body-size: "10240M"
+        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
         nginx.ingress.kubernetes.io/enable-cors: "true"
         nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
     internalDatabase:
