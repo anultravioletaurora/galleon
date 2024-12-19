@@ -86,52 +86,6 @@ spec:
               cpu: 4
               memory: "14Gi" 
               nvidia.com/gpu: "2"
-
-        - name: jellysearch
-          image: domistyle/jellysearch
-          ports:
-            - containerPort: 5000
-          volumeMounts:
-            - name: config
-              mountPath: "/config"
-              readOnly: true
-          env:
-            - name: JELLYFIN_URL
-              valueFrom: 
-                configMapKeyRef:
-                  name: jellyfin-cm
-                  key: jellyfin_local_url
-            - name: MEILI_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: jellyfin-cm
-                  key: meili-url
-            - name: MEILI_MASTER_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: jellyfin
-                  key: meili-key
-            - name: INDEX_CRON
-              valueFrom:
-                configMapKeyRef:
-                  key: jellysearch-cron
-                  name: jellyfin-cm
-
-        - name: meilisearch
-          image: getmeili/meilisearch:v1.9
-          ports:
-            - containerPort: 7700
-          volumeMounts:
-            - name: meili
-              mountPath: "/meili_data"
-              subPath: "meilisearch"
-          env:
-            - name: MEILI_MASTER_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: jellyfin
-                  key: meili-key
-
    
       volumes:
         - name: config
