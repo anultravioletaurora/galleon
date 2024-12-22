@@ -74,16 +74,16 @@ spec:
             httpGet:
               path: /health
               port: 8096
-            initialDelaySeconds: 240
+            initialDelaySeconds: 300
             periodSeconds: 30
                   
           resources:
             limits:
-              cpu: 4
+              cpu: 6
               memory: "14Gi"
               nvidia.com/gpu: "2" 
             requests:
-              cpu: 4
+              cpu: 6
               memory: "14Gi" 
               nvidia.com/gpu: "2"
    
@@ -120,3 +120,7 @@ spec:
           nfs:
             server: unraid.cosmonautical.cloud
             path: /mnt/user/music
+        - name: liveshows
+          nfs: 
+            server: unraid.cosmonautical.cloud
+            path: /mnt/user/liveshows
