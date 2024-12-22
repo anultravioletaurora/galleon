@@ -58,6 +58,8 @@ spec:
               mountPath: /media/books 
             - name: music
               mountPath: /media/music
+            - name: liveshows
+              mountPath: /media/liveshows
 
           lifecycle:
             postStart:
