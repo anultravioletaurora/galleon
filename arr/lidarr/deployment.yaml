@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: lidarr
-          image: ghcr.io/hotio/lidarr:pr-plugins-2.8.1.4433
+          image: ghcr.io/hotio/lidarr:pr-plugins-2.9.0.4506
           ports:
             - containerPort: 8686
           volumeMounts:
