@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grocy
+  labels:
+    app.kubernetes.io/name: grocy
+    app.kubernetes.io/instance: grocy
+spec:
+  strategy:
+    type: "Recreate"
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: grocy
+      app.kubernetes.io/instance: grocy
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: grocy
+        app.kubernetes.io/instance: grocy
+    spec:
+      containers:
+        - name: grocy
+          image: lscr.io/linuxserver/grocy:4.2.0
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: grocy
+              mountPath: "/config"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+      volumes:
+        - name: grocy
+          persistentVolumeClaim:
+            claimName: grocy
+
