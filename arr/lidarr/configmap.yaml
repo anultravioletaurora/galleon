@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: lidarr
 data:
-  override_musicbrainz: "false"
+  override_musicbrainz: "true"
   prioritize_deemix: "true"
   proxy-run.sh: |
     #!/bin/bash
