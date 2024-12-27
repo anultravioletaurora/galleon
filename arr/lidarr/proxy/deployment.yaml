@@ -45,6 +45,9 @@ spec:
                 secretKeyRef:
                   name: lidarr
                   key: deemix_arl
+          volumeMounts:
+            - name: lidarr-certs
+              mountPath: "/root"
           resources:
             requests:
               cpu: 100m
@@ -52,6 +55,10 @@ spec:
             limits: 
               cpu: 200m
               memory: 256Mi
+      volumes:
+        - name: lidarr-certs
+          persistentVolumeClaim:
+            claimName: lidarr-certs
 ---
 
 
