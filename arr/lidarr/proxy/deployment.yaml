@@ -26,7 +26,7 @@ spec:
         - name: lidarr-proxy
           securityContext:
             privileged: true
-          image: ghcr.io/ad-on-is/lidarr-deemix:2.0.0
+          image: ghcr.io/ad-on-is/lidarr-deemix:2.1.10
           ports:
             - containerPort: 8080
           env: 
