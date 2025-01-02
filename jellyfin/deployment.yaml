@@ -72,12 +72,19 @@ spec:
                     git clone https://github.com/anultravioletaurora/Jellynautical.git &&\
                     mv ./Jellynautical/min/*.min.css /jellyfin/jellyfin-web/"
     
+          readinessProbe:
+            httpGet:
+              path: /web
+              port: 8096
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            
           livenessProbe:
             httpGet:
               path: /health
               port: 8096
-            initialDelaySeconds: 300
-            periodSeconds: 30
+            initialDelaySeconds: 240
+            periodSeconds: 60
                   
           resources:
             limits:
