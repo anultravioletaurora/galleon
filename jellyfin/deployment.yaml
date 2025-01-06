@@ -60,17 +60,6 @@ spec:
               mountPath: /media/music
             - name: liveshows
               mountPath: /media/liveshows
-
-          lifecycle:
-            postStart:
-              exec:
-                command: 
-                  - "/bin/sh"
-                  - "-c"
-                  - "cd /tmp && apt-get update && \
-                    apt-get install -y git && \
-                    git clone https://github.com/anultravioletaurora/Jellynautical.git &&\
-                    mv ./Jellynautical/min/*.min.css /jellyfin/jellyfin-web/"
     
           readinessProbe:
             httpGet:
@@ -78,7 +67,14 @@ spec:
               port: 8096
             initialDelaySeconds: 5
             periodSeconds: 5
-                  
+            
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8096
+            initialDelaySeconds: 240
+            periodSeconds: 60
+          
           resources:
             limits:
               cpu: 6
