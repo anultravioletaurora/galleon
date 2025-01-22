@@ -33,7 +33,7 @@ spec:
             sysctls:
               - name: fs.inotify.max_user_watches
                 value: 524288
-          image: jellyfin/jellyfin:10.10.2
+          image: jellyfin/jellyfin:10.10.4
           ports:
             - containerPort: 8096
           env:
@@ -78,11 +78,11 @@ spec:
           resources:
             limits:
               cpu: 6
-              memory: "16Gi"
+              memory: "14Gi"
               nvidia.com/gpu: "2" 
             requests:
               cpu: 6
-              memory: "14Gi" 
+              memory: "12Gi" 
               nvidia.com/gpu: "2"
    
       volumes:
