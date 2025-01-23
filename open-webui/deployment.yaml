@@ -27,7 +27,7 @@ spec:
         - name: open-webui
           securityContext:
             privileged: true
-          image: ghcr.io/open-webui/open-webui:0.5.2-ollama
+          image: ghcr.io/open-webui/open-webui:0.5.4-ollama
           ports:
             - containerPort: 8080
             - containerPort: 11434 # Expose Ollama for Home Assistant
