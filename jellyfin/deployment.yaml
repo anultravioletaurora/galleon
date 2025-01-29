@@ -81,7 +81,7 @@ spec:
               memory: "10Gi"
               nvidia.com/gpu: "2" 
             requests:
-              cpu: 2
+              cpu: 1
               memory: "8Gi" 
               nvidia.com/gpu: "2"
    
