@@ -77,12 +77,12 @@ spec:
           
           resources:
             limits:
-              cpu: 4
-              memory: "10Gi"
+              cpu: 6
+              memory: "12Gi"
               nvidia.com/gpu: "2" 
             requests:
-              cpu: 1
-              memory: "8Gi" 
+              cpu: 4
+              memory: "10Gi" 
               nvidia.com/gpu: "2"
    
       volumes:
