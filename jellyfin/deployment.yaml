@@ -72,17 +72,17 @@ spec:
             httpGet:
               path: /health
               port: 8096
-            initialDelaySeconds: 240
-            periodSeconds: 60
+            initialDelaySeconds: 300
+            periodSeconds: 30
           
           resources:
             limits:
-              cpu: 6
-              memory: "12Gi"
+              cpu: 8
+              memory: "14Gi"
               nvidia.com/gpu: "2" 
             requests:
               cpu: 4
-              memory: "10Gi" 
+              memory: "12Gi" 
               nvidia.com/gpu: "2"
    
       volumes:
