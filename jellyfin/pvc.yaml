@@ -9,6 +9,7 @@ spec:
     requests:
       storage: 100Gi
   storageClassName: "harvester"
+  volumeHandle: 'pvc-2dd91e93-697f-480b-be14-e5a1c2f745d5'
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
