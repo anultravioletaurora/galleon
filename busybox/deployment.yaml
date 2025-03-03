@@ -23,7 +23,12 @@ spec:
     spec:
       containers:
         - name: busybox
-          image: ubuntu:22.04
+          image: busybox
+          command: 
+            - /bin/sh
+            - "-c"
+            - "ls /etc/config/"
+            - "sleep infinity"
           resources:
             requests:
               cpu: 100m
