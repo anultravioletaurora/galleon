@@ -38,6 +38,8 @@ spec:
           volumeMounts:
             - name: config
               mountPath: "/run/mount/authentik-db"
+            - name: cosmonautical
+              mountPath: "/run/mount/cosmonautical"
       volumes:
         - name: config
           persistentVolumeClaim:
