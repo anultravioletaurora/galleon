@@ -8,3 +8,6 @@ helm:
       enabled: true
       keep: true
 paused: false
+
+dependsOn:
+  - name: galleon-cert-manager-namespace
