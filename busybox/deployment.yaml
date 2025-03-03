@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: busybox
-          image: busybox
+          image: ubuntu:22.04
           resources:
             requests:
               cpu: 100m
