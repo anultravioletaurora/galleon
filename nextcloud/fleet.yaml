@@ -2,7 +2,7 @@ defaultNamespace: cosmonautical
 helm:
   chart: "nextcloud"
   repo: "https://nextcloud.github.io/helm/"
-  version: 6.3.0
+  version: 6.6.6
   values:
     resources: 
       requests: 
@@ -51,8 +51,8 @@ helm:
       size: 10Gi
       nextcloudData:
         enabled: true
-        storageClass: nfs
-        accessMode: ReadWriteMany
+        storageClass: harvester
+        accessMode: ReadWriteOnce
         size: 100Gi
     redis:
       enabled: true
