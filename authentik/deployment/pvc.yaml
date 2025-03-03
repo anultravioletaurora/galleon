@@ -1,0 +1,17 @@
+# authentik-db PVC for config
+apiVersion: "v1"
+kind: "PersistentVolumeClaim"
+metadata:
+  name: authentik-db
+  namespace: cosmonautical
+  labels:
+    app.kubernetes.io/name: authentik-db
+    app.kubernetes.io/instance: authentik-db
+spec:
+  accessModes:
+    - "ReadWriteMany"
+  resources:
+    requests:
+      storage: "10Gi"
+  storageClassName: harvester
+---
