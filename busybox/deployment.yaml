@@ -27,7 +27,6 @@ spec:
           command: 
             - /bin/sh
             - "-c"
-            - "ls /etc/config/"
             - "sleep infinity"
           resources:
             requests:
