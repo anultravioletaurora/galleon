@@ -35,3 +35,10 @@ spec:
             limits:
               cpu: 200m
               memory: 400Mi
+          volumeMounts:
+            - name: config
+              mountPath: "/run/mount/authentik-db"
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: authentik-db
