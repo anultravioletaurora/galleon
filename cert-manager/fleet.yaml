@@ -7,7 +7,5 @@ helm:
     crds: 
       enabled: true
       keep: true
+  namespace: cert-manager
 paused: false
-
-dependsOn:
-  - name: galleon-cert-manager-namespace
