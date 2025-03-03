@@ -23,3 +23,5 @@ dependsOn:
   - name: galleon-authentik-styling
   - name: galleon-authentik-blueprints
   - name: galleon-authentik-deployment-pvc
+
+paused: true
