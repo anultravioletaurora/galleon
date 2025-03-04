@@ -1,0 +1,5 @@
+defaultNamespace: cosmonautical
+paused: true
+dependsOn:
+  - name: galleon-jellyfin-pvc
+  - name: galleon-jellyfin-zap2it
