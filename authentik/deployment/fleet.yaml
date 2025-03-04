@@ -24,4 +24,4 @@ dependsOn:
   - name: galleon-authentik-blueprints
   - name: galleon-authentik-deployment-pvc
 
-paused: true
+paused: false
