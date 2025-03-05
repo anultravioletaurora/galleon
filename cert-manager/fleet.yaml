@@ -7,4 +7,6 @@ helm:
       enabled: true
       keep: true
   
-paused: false
+paused: true
+dependsOn:
+  - name: galleon-nginx
