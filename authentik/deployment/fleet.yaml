@@ -25,4 +25,4 @@ dependsOn:
   - name: galleon-authentik-deployment-pvc
   - name: galleon-nginx
   
-paused: true
+paused: false
