@@ -36,14 +36,14 @@ spec:
               cpu: 200m
               memory: 400Mi
           volumeMounts:
-            - name: jellyfin
-              mountPath: "/run/mount/jellyfin"
+            - name: auth
+              mountPath: "/run/mount/auth"
             - name: cosmonautical
               mountPath: "/run/mount/cosmonautical"
       volumes:
-        - name: jellyfin
+        - name: auth
           persistentVolumeClaim:
-            claimName: jellyfin
+            claimName: authentik-db
         - name: cosmonautical
           nfs:
             server: unraid.cosmonautical.cloud
