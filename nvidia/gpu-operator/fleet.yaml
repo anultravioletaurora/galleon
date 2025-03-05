@@ -17,7 +17,7 @@ helm:
         - name: CONTAINERD_SOCKET
           value: /run/k3s/containerd/containerd.sock
         - name: CONTAINERD_CONFIG
-          value: "/var/lib/rancher/k3s/agent/etc/containerd/config.toml"
+          value: "/var/lib/rancher/rke2/agent/etc/containerd/config.toml"
         - name: "CONTAINERD_RUNTIME_CLASS"
           value: "nvidia"
         - name: "CONTAINERD_SET_AS_DEFAULT"
