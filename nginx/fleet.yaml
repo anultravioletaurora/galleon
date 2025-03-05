@@ -1,1 +1,2 @@
-defaultNamespace: kube-system
+namespace: kube-system
+paused: true
