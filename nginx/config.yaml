@@ -11,5 +11,5 @@ spec:
       service:
         enabled: true
         annotations:
-          cloudprovider.harvesterhci.io/ipam: dhcp
+          cloudprovider.harvesterhci.io/ipam: pool
         type: LoadBalancer    
