@@ -1,4 +1,3 @@
-defaultNamespace: cert-manager
 helm:
   chart: cert-manager
   repo: 'https://charts.jetstack.io/'
@@ -7,6 +6,5 @@ helm:
     crds: 
       enabled: true
       keep: true
-  namespace: cert-manager
   
 paused: false
