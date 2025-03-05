@@ -6,11 +6,8 @@ spec:
   valuesContent: |-
     controller:
       allowSnippetAnnotations: true
-      publishService:
-        enabled: true
       service:
         enabled: true
         annotations:
           cloudprovider.harvesterhci.io/ipam: pool
-          
         type: LoadBalancer    
