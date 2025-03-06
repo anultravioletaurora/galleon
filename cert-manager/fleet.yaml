@@ -9,4 +9,4 @@ helm:
   
 paused: false
 dependsOn:
-  - name: galleon-nginx
+  - name: galleon-traefik
