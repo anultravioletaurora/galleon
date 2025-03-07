@@ -1,0 +1,13 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-ingress-nginx
+spec:
+  valuesContent: |-
+    controller:
+      allowSnippetAnnotations: true
+      service:
+        enabled: true
+        annotations:
+          cloudprovider.harvesterhci.io/ipam: pool
+        type: LoadBalancer    

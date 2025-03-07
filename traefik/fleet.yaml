@@ -1,3 +1,4 @@
+defaultNamespace: traefik
 helm:
   chart: traefik/traefik
   repo: https://traefik.github.io/charts
