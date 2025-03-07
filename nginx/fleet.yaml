@@ -1,2 +1,2 @@
 namespace: kube-system
-paused: true
+paused: false
