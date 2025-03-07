@@ -20,7 +20,6 @@ helm:
         namespace: cosmonautical
         key: values.yaml
 dependsOn:
-  - name: galleon-authentik-styling
   - name: galleon-authentik-blueprints
   - name: galleon-authentik-deployment-pvc
   - name: galleon-nginx
