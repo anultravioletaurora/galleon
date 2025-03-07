@@ -23,6 +23,6 @@ dependsOn:
   - name: galleon-authentik-styling
   - name: galleon-authentik-blueprints
   - name: galleon-authentik-deployment-pvc
-  - name: galleon-traefik
+  - name: galleon-nginx
   
-paused: true
+paused: false
