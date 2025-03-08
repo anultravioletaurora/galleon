@@ -36,11 +36,14 @@ spec:
               cpu: 200m
               memory: 400Mi
           volumeMounts:
-            - name: jellyfin
-              mountPath: "/run/mount/jellyfin"
+            - name: auth
+              mountPath: "/run/mount/auth"
             - name: cosmonautical
               mountPath: "/run/mount/cosmonautical"
       volumes:
+        - name: auth
+          persistentVolumeClaim:
+            claimName: authentik-db
         - name: jellyfin
           persistentVolumeClaim:
             claimName: jellyfin
