@@ -2,7 +2,7 @@ defaultNamespace: cosmonautical
 helm: 
   chart: 'authentik'
   repo: 'https://charts.goauthentik.io/'
-  version: 2025.2.1
+  version: 2025.4.0
   values:
     global:
       volumeMounts:
