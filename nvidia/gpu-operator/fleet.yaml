@@ -2,7 +2,7 @@ defaultNamespace: gpu-operator
 helm:
   chart: 'gpu-operator'
   repo: 'https://helm.ngc.nvidia.com/nvidia'
-  version: 24.6.2 # https://github.com/NVIDIA/gpu-operator/issues/1109
+  version: v25.3.0 # https://github.com/NVIDIA/gpu-operator/issues/1109
   values:
     devicePlugin:
       config:
