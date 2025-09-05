@@ -2,7 +2,7 @@ defaultNamespace: cosmonautical
 helm:
   chart: "nextcloud"
   repo: "https://nextcloud.github.io/helm/"
-  version: 6.6.10
+  version: 7.0.4
   values:
     resources: 
       requests: 
